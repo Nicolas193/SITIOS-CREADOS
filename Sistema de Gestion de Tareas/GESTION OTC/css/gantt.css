@@ -1,0 +1,328 @@
+:root {
+  --bordes: #e6e6e6;
+  --bg: #f7f9fc;
+  --bg-card: #fff;
+  --head: #2c3e50;
+  --btn-bg: #3498db;
+  --btn-hover: #2980b9;
+  --color-text: #2c3e50;
+}
+
+/* ===== BASE ===== */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+
+  color: var(--color-text);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin-left: 220px;
+}
+
+h2 {
+  margin: 0;
+  padding: 16px;
+  background: var(--head);
+  color: #ffff !important;
+  font-size: 1.4em;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  flex-shrink: 0;
+}
+
+/* ===== CONTROLES ===== */
+#controls {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  background: #ecf0f1;
+  padding: 8px 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  z-index: 200;
+}
+
+#controls button {
+  min-width: 70px;
+  padding: 6px 10px;
+  font-size: 13px;
+  border-radius: 5px;
+  border: none;
+  background: var(--btn-bg);
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+#controls button:hover {
+  background: var(--btn-hover);
+}
+
+/* ===== LAYOUT PRINCIPAL ===== */
+.layout {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  height: calc(100vh - 100px);
+  margin-top: 10px;
+}
+
+/* ===== PANEL IZQUIERDO (TABLA) ===== */
+.table-container {
+  flex: 0 0 40%;
+  max-width: 450px;
+  background: var(--bg-card);
+  border-right: 1px solid var(--bordes);
+  position: relative; /* necesario para tooltips */
+}
+
+.table-wrapper {
+  overflow-y: auto;
+  max-height: 100%;
+}
+
+.table-container table {
+  width: 100%;
+  table-layout: fixed; /* evita que las columnas se adapten al contenido */
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.table-container th, 
+.table-container td {
+  border: 1px solid #f0f0f0;
+  padding: 6px;
+  vertical-align: top;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Anchos fijos de columnas */
+.table-container th:nth-child(1),
+.table-container td:nth-child(1) { width: 30%; }
+.table-container th:nth-child(2),
+.table-container td:nth-child(2) { width: 15%; }
+.table-container th:nth-child(3),
+.table-container td:nth-child(3) { width: 15%; }
+.table-container th:nth-child(4),
+.table-container td:nth-child(4) { width: 20%; }
+.table-container th:nth-child(5),
+.table-container td:nth-child(5) { width: 20%; }
+.table-container th:nth-child(6),
+.table-container td:nth-child(6) { width: 20%; }
+
+th {
+  position: sticky;
+  top: 0;
+  background: #f5f5f5;
+  z-index: 2;
+  font-weight: 600;
+  color: #ffff;
+}
+
+tbody tr:nth-child(odd) { background: #fcfcfc; }
+tbody tr:hover { background-color: #f0f0f0; cursor: pointer; }
+tbody tr.selected { background-color: #d0e7ff; }
+
+#tabla-tareas tbody tr { 
+  height: 40px;  /* altura fija por fila */
+}
+
+
+#tabla-tareas tbody td {
+  height: 35px;
+}
+/* ===== PANEL DERECHO (GANTT) ===== */
+#gantt-container {
+  flex: 1;
+  overflow-x: auto;
+  overflow-y: visible;
+  background: #fafafa;
+  position: relative;
+}
+
+#gantt svg {
+  width: 100%;
+}
+
+/* ===== BARRAS DEL GANTT ===== */
+.g-rojo rect.bar { fill:#e74c3c; stroke:#a93226; stroke-width:3px; }
+.g-naranja rect.bar { fill:#f39c12; stroke:#b9770e; stroke-width:3px; }
+.g-verde rect.bar { fill:#27ae60; stroke:#1e8449; stroke-width:3px; }
+.g-azul rect.bar { fill:#2980b9; stroke:#1f618d; stroke-width:3px; }
+.g-violeta rect.bar { fill:#8e44ad; stroke:#6c3483; stroke-width:3px; }
+.g-rosa rect.bar { fill:#e84393; stroke:#c2185b; stroke-width:3px; }
+.g-turquesa rect.bar { fill:#16a085; stroke:#0e6655; stroke-width:3px; }
+.g-amarillo rect.bar { fill:#f1c40f; stroke:#b7950b; stroke-width:3px; }
+.g-gris rect.bar { fill:#95a5a6; stroke:#626567; stroke-width:3px; }
+
+rect.bar {
+  rx:5; ry:5;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25));
+  transition: all 0.2s ease;
+  height: 30px !important;
+}
+
+rect.bar:hover {
+  opacity: 0.95;
+  stroke-width:4px;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.35));
+  cursor: pointer;
+}
+
+.bar-highlight {
+  stroke:#000 !important;
+  stroke-width:4px !important;
+  filter: drop-shadow(0 0 8px rgba(0,0,0,0.5));
+}
+
+rect.progress {
+  rx:5; ry:5;
+  fill: rgba(255,255,255,0.25);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .layout {
+    flex-direction: column;
+    margin-top: 140px;
+  }
+  .table-container {
+    width: 100%;
+    max-width: none;
+    height: 35%;
+    border-right: none;
+    border-bottom: 1px solid var(--bordes);
+  }
+  #gantt-container {
+    height: 65%;
+  }
+}
+
+#today-marker { stroke:#000; stroke-width:2; }
+.arrow { display: none !important; }
+thead { height: 85px; }
+
+/* ===== TOOLTIP ===== */
+/* Tooltip funcional */
+[data-tooltip] {
+  position: relative;
+  cursor: help;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute; /* CAMBIO: de fixed a absolute */
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 100%; /* justo arriba de la celda */
+  margin-bottom: 6px;
+  background: #2c3e50;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  white-space: pre-line; /* permite saltos de línea */
+  max-width: 300px;
+  font-size: 12px;
+  line-height: 1.3;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 1000; 
+}
+
+[data-tooltip]:hover::after {
+  opacity: 1;
+}
+
+
+/* ===== FILTROS ===== */
+#filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  align-items: center;
+  background: var(--bg-card);
+  border: 1px solid var(--bordes);
+  border-radius: 10px;
+  padding: 12px 16px;
+  margin: 16px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  font-size: 13px;
+}
+
+#filtros label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--head);
+}
+
+#filtros select,
+#filtros input[type="date"] {
+  margin-top: 4px;
+  padding: 6px 8px;
+  border: 1px solid var(--bordes);
+  border-radius: 6px;
+  font-size: 13px;
+  background: #fff;
+  min-width: 160px;
+  transition: border 0.2s ease;
+}
+
+#filtros select:focus,
+#filtros input[type="date"]:focus {
+  outline: none;
+  border-color: var(--btn-bg);
+  box-shadow: 0 0 0 2px rgba(52,152,219,0.2);
+}
+
+#filtros button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  background: var(--btn-bg);
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+#filtros button:hover {
+  background: var(--btn-hover);
+}
+
+#filtros button:nth-of-type(2) {
+  background: #95a5a6;
+}
+
+#filtros button:nth-of-type(2):hover {
+  background: #7f8c8d;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  #filtros {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  #filtros label {
+    width: 100%;
+  }
+  #filtros select,
+  #filtros input[type="date"] {
+    width: 100%;
+  }
+}

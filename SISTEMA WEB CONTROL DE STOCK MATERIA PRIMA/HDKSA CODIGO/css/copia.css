@@ -1,0 +1,83 @@
+
+/* Estilo del menú */
+#navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #343a40;
+  color: #fff;
+}
+
+
+
+.logo {
+padding-right: 20px;
+  text-align: center;
+  font-size: 1.5em;
+  color: #007bff;
+  text-shadow: 1px 1px 0 #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+}
+
+
+
+.flecha{
+  padding: 5px;
+  text-align: left;
+  background-color:#343a40 ;
+  color: #ffff;
+}
+
+
+b{
+  color: #ffff;
+}
+
+b:hover{
+    color: #007bff;
+}
+
+.boton-calculadora {
+    position: absolute;
+  right: 50px;
+ 
+}
+
+
+
+
+.imagencalculadora {
+  width: 45px;
+  height: 45px;
+}
+@media only screen and (max-width: 768px) {
+  .contenedor{
+  position: fixed !important;
+  width: 100%;
+  z-index: 9999;
+
+}
+
+
+  .navbar-toggler {
+    position: fixed;
+    font-size: 20px;
+    top: 38px;
+    background-color:#343a40 ;
+    width: 100%;
+    border-block: 100px;
+    left: -1px;
+}
+
+.logo{
+  margin-top: 10px;
+  padding: 10px;
+}
+nav{
+  margin-top: 25px;
+}
+.navbar-toggler-icon.open:before {
+  content: "×";
+}
+
+
+}

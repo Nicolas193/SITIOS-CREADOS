@@ -1,0 +1,279 @@
+.content1 {
+  width: 100%;
+  margin-left: 220px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding: 0 20px;
+  background-color: transparent; /* 🔁 Aquí cambia el blanco por transparente */
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(21, 101, 192, 0.15);
+  box-sizing: border-box;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Contenedor formulario con ancho fijo */
+.form-container {
+  background: white;
+  padding: 25px 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(21, 101, 192, 0.2);
+  margin-bottom: 50px;
+  width: 960px;
+  box-sizing: border-box;
+}
+
+.form-container h2 {
+  color: #0d47a1;
+  font-weight: 700;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.form-wrapper label {
+  display: block;
+  font-weight: 600;
+  color: #1565c0;
+  margin-top: 15px;
+  margin-bottom: 6px;
+  font-size: 0.95rem;
+}
+
+.form-wrapper input[type="text"],
+.form-wrapper input[type="url"] {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 1rem;
+  border: 2px solid #bbdefb;
+  border-radius: 8px;
+  transition: border-color 0.25s ease;
+  box-sizing: border-box;
+}
+
+.form-wrapper input[type="text"]:focus,
+.form-wrapper input[type="url"]:focus {
+  border-color: #1565c0;
+  outline: none;
+}
+
+.form-wrapper input[type="submit"] {
+  background-color: #1565c0;
+  color: white;
+  padding: 12px 0;
+  width: 100%;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  margin-top: 30px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(21, 101, 192, 0.3);
+  transition: background-color 0.3s ease;
+}
+
+.form-wrapper input[type="submit"]:hover {
+  background-color: #0d47a1;
+}
+
+/* Sección lista (contenedor tarjetas) */
+.list-section {
+  background: white;
+  padding: 30px 30px 40px 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(21, 101, 192, 0.2);
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 40px;
+}
+
+.list-section h2 {
+  color: #0d47a1;
+  font-weight: 700;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* Buscador */
+#buscador {
+  display: block;
+  margin: 0 auto 30px auto;
+  padding: 12px 15px;
+  font-size: 1.05rem;
+  border-radius: 8px;
+  border: 2px solid #bbdefb;
+  width: 60%;
+  max-width: 400px;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+#buscador:focus {
+  border-color: #1565c0;
+  outline: none;
+}
+
+/* Contenedor tarjetas con grid */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  justify-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Cada tarjeta ocupa 100% dentro de su grid cell */
+.url-card {
+  background-color: #e8f0fe;
+  border-left: 6px solid #1565c0;
+  border-radius: 10px;
+  padding: 22px 25px;
+  box-shadow: 0 3px 8px rgba(21, 101, 192, 0.2);
+  width: 100%;   /* 100% del grid cell */
+  max-width: none;  /* Sin máximo */
+  transition: transform 0.2s ease;
+  box-sizing: border-box;
+}
+
+.url-card:hover {
+  transform: translateY(-5px);
+}
+
+.url-card h3 {
+  color: #0d47a1;
+  font-weight: 700;
+  margin-bottom: 14px;
+  font-size: 1.3rem;
+}
+
+.url-card p {
+  color: #2c3e50;
+  font-size: 0.95rem;
+  margin: 8px 0;
+  line-height: 1.3;
+}
+
+.url-card a {
+  color: #1565c0;
+  text-decoration: none;
+  word-break: break-word;
+  font-weight: 600;
+}
+
+.url-card a:hover {
+  text-decoration: underline;
+}
+
+/* Botón eliminar */
+.delete-btn {
+  margin-top: 18px;
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 3px 7px rgba(25, 118, 210, 0.5);
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.delete-btn:hover {
+  background-color: #0d47a1;
+}
+
+/* Responsive */
+@media screen and (max-width: 1024px) {
+  .form-container, .list-section {
+    width: 100%;
+    padding: 15px 20px;
+  }
+  
+  #buscador {
+    width: 90%;
+    max-width: none;
+  }
+  
+  .card-container {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .url-card {
+    max-width: 100%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .form-wrapper input[type="submit"] {
+    font-size: 1rem;
+    padding: 10px 0;
+  }
+}
+
+.btn-gradient {
+  background: linear-gradient(135deg, #0078d7, #00b0ff);
+  border: none;
+  color: white;
+  padding: 12px 32px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 120, 215, 0.4);
+  margin: 20px auto 0;
+  display: block;
+  user-select: none;
+  text-align: center;
+  text-decoration: none;
+}
+
+.btn-gradient:hover, 
+.btn-gradient:focus {
+  background: linear-gradient(135deg, #005ea6, #008cff);
+  box-shadow: 0 6px 20px rgba(0, 120, 215, 0.6);
+  outline: none;
+}
+
+.btn-gradient:active {
+  background: linear-gradient(135deg, #004a82, #0077d1);
+  box-shadow: 0 2px 10px rgba(0, 120, 215, 0.3);
+  transform: translateY(1px);
+}
+
+/* Botón eliminar con degradado rojo */
+.btn-gradient-danger {
+  background: linear-gradient(135deg, #d32f2f, #ff5252);
+  border: none;
+  color: white;
+  padding: 12px 32px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(211, 47, 47, 0.4);
+  margin: 20px auto 0;
+  display: block;
+  user-select: none;
+  text-align: center;
+  text-decoration: none;
+}
+
+.btn-gradient-danger:hover, 
+.btn-gradient-danger:focus {
+  background: linear-gradient(135deg, #9a1f1f, #d32f2f);
+  box-shadow: 0 6px 20px rgba(211, 47, 47, 0.6);
+  outline: none;
+}
+
+.btn-gradient-danger:active {
+  background: linear-gradient(135deg, #7a1919, #b32424);
+  box-shadow: 0 2px 10px rgba(211, 47, 47, 0.3);
+  transform: translateY(1px);
+}
+

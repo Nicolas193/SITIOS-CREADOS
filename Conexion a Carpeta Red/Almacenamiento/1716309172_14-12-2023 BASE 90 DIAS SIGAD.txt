@@ -1,0 +1,994 @@
+libname SIGAD mysql server='10.74.230.56' database='sigad' user='usrSas' password='S@sS1gad.2o23' dbconinit="set names utf8";
+/*librerias DataSets*/
+/*libname tmpsas '/sastmp/sasdata';
+
+/*Cas Lib */
+cas ;
+caslib _all_ assign ;
+options casdatalimit=ALL;
+/*-----------------------------------------------------------------------------*/
+
+/* fechas de los últimos 90 días */
+proc sql;
+create table Fecha (
+  id int,
+  fecha date
+);
+quit;
+
+/* fecha inicial y la fecha final (la fecha actual) */
+%let fecha_inicial = '31JAN2017'd;
+%let fecha_final = %sysfunc(today());
+
+/* Utiliza un bucle para insertar el último día de cada dia */
+data Fecha;
+  format fecha DDMMYY10.;
+  do id = 1 to intck('day', &fecha_inicial, &fecha_final);
+    fecha = intnx('day', &fecha_inicial, id, 'e'); 
+    output;
+  end;
+run;
+
+
+/* Cantidad de AP que pasaron a la firma del subsecretario con la fecha minima */ 
+
+proc sql;
+create table Work.LogAPfirmaminimascretario AS
+select distinct
+    t1.averiguacionPrevia,
+    min(t1.fechaHora) as MinimaFecha
+from
+    SIGAD.LogEstado t1
+left join
+    SIGAD.EstadoDelTramiteAP t2 on (t2.id = t1.nuevoEstadoAP_id)
+where
+    t2.nombre='A LA FIRMA DEL SUBSECRETARIO' and t1.averiguacionPrevia IS NOT NULL
+group by
+    t1.averiguacionPrevia;
+quit;
+
+/*otra forma te obtener la fecha max para sumario */
+
+proc sql;
+create table FechaMaximaLog as
+select
+    numerolog,
+    MaximaFecha
+from
+    (select
+        cats(c.denuncia, c.sumario, c.averiguacionPrevia) as numerolog,
+        max(c.fechaHora) as MaximaFecha
+    from
+        SIGAD.LogEstado c
+    group by denuncia, sumario, averiguacionPrevia);
+quit;
+
+
+
+proc sql;
+create table SumarioFecha as
+select
+t1.numero,
+cats(t1.numero, t2.lp) as NumeroMasLp,
+t5.nombre as tipodesancion,
+t2.fechaSancion,
+t5.nombre as SumarioSancion,
+t1.fechaInicioSumario as FechaInicio,
+t1.fechaAceptacionDeCompetencia,
+t1.fechaIncompetencia,
+t1.fechaIngresoOTCE,
+t1.fechaFinSumario,
+t1.fechaDelHecho,
+t2.fechaPRERESOsancion,
+t4.MaximaFecha as UltimaFechaEstado,
+t3.nombre as EstadoActuacion
+from SIGAD.Sumarios t1
+left join SIGAD.PersonaSumariada as t2 on(t2.sumario_numero=t1.numero)
+left join SIGAD.EstadoDelTramiteSumario as t3 on(t1.idEstadoDelTramiteSumario=t3.id)
+left join FechaMaximaLog t4 on (t4.numerolog = t1.numero)
+left join SIGAD.SancionSumario as t5 on(t2.sancion=t5.id);
+quit;
+
+
+/* denuncias*/
+
+
+proc sql ;
+create table FechaDenuncias as
+select
+t2.numero,
+t2.fechaintervencionOTCE,
+t2.fechaFin,
+t2.denuncianteLp,
+t2.fechaDelHecho,
+t5.nombre as estado,
+t3.MaximaFecha as UltimaFechaEstado
+from SIGAD.Denuncia t2
+left join FechaMaximaLog t3 on (t3.numerolog = t2.numero)
+left join SIGAD.EstadoDelTramiteDenuncia  t4 on (t2.idEstadoDelTramiteDenuncia=t4.id)
+left join SIGAD.GrupoEstadoDenuncia  t5 on (t4.grupo=t5.id);
+quit;
+
+/* Averiguacion Previa*/
+
+proc sql;
+create table AveriguacionPrevia as 
+select 
+    t3.numero,
+    t3.fechaFin,
+    t3.fechaInicio,
+    t4.fechaHora,
+	t7.MaximaFecha as UltimaFechaEstado,
+	t9.nombre as Estado,
+    case when min(DATEPART(t4.fechaHora))>'11JUL2019'd then  min(DATEPART(t4.fechaHora)) else DATEPART(t3.fechaInicio) end  format=date9. as APMas,
+	(case when t10.MinimaFecha is not null then DATEPART(t10.MinimaFecha)
+		 when t3.fechaFin is not null then DATEPART(t3.fechaFin)
+else 0 end)format=date9. as  FechaFinOFechaFirma
+from SIGAD.AveriguacionPrevia t3
+left join SIGAD.LogEstado as t4 on (t3.numero = t4.averiguacionPrevia)
+left join FechaMaximaLog as t7 on(t3.numero=t7.numerolog)
+left join SIGAD.EstadoDelTramiteAP as t8 on(t3.estadoDelTramiteAP = t8.id)
+left join SIGAD.GrupoEstadoAP as t9 on(t8.grupo=t9.id)
+left join  Work.LogAPfirmaminimascretario as t10 on (t3.numero=t10.averiguacionPrevia)
+group by t3.numero, t3.fechaFin, t3.fechaInicio;
+quit;
+
+/*-------------------Calculos----------------------------------------------*/
+
+/*  Cantidad de Actuaciones con fecha Ingreso OTCE en el dia del campo Fecha SU_Para _Aceptar*/ 
+
+proc sql;
+alter table Sumariofecha
+add fecha date;
+update Sumariofecha
+set fecha = INTNX('day', today(), -1, 'E');
+quit;
+
+
+proc sql;
+create table SuParaAceptar as
+select 
+  fecha as Fecha,
+  case 
+    when count(distinct s.numero) > 0 then count(distinct s.numero) 
+    else 0 
+  end as SuParaAceptar
+from
+  Sumariofecha s
+where  
+ ( DATEPART(s.fechaIngresoOTCE) <= (fecha) and DATEPART(s.fechaAceptacionDeCompetencia)>fecha )
+group by fecha;
+quit;
+
+proc sql;
+create table SuParaAceptar2 as
+select 
+  f.fecha,
+  case when count(distinct s.numero) > 0 then count(distinct s.numero) else 0 end  as Actuaciones_Iniciadas
+from
+  Fecha f
+left join
+  SumarioFecha s
+on
+  DATEPART(s.fechaIngresoOTCE) <= f.fecha 
+where
+  s.fechaAceptacionDeCompetencia is null  and s.fechaIngresoOTCE is not null 
+group by
+  f.fecha;
+quit;
+
+proc sql;
+create table SuParaAceptar3 as
+select 
+  f.fecha,
+  case when count(distinct s.numero) > 0 then count(distinct s.numero) else 0 end  as Actuaciones_Iniciadas2
+from
+  Fecha f
+left join
+  SumarioFecha s
+on
+  ( DATEPART(s.fechaIngresoOTCE) <= (f.fecha) and DATEPART(s.fechaAceptacionDeCompetencia)>f.fecha )
+group by
+  f.fecha;
+quit;
+
+proc sql;
+create table tabla1S as
+select 
+	f.fecha,
+	t1.Actuaciones_Iniciadas as data1,
+	t2.Actuaciones_Iniciadas2 as data2,
+	t3.SuParaAceptar as data3,
+	t2.Actuaciones_Iniciadas2 + t1.Actuaciones_Iniciadas 
+	-case when t3.SuParaAceptar is not null then sum(t3.SuParaAceptar) else 0 end  as SuParaAceptar
+	from
+  fecha f
+left join SuParaAceptar2 t1 on  (t1.fecha=f.fecha)
+left join SuParaAceptar3 t2 on  (t2.fecha=f.fecha)
+left join SuParaAceptar t3 on  (t3.fecha =f.fecha)
+group by
+f.fecha;
+quit;
+
+
+/* Cantidad de Actuaciones con fecha Aceptación Competencia en el dia y año del campo Fecha*/
+
+proc sql;
+create table tabla2S as
+select 
+  f.fecha,
+  case when count(distinct s.numero) > 0 then count(distinct s.numero) else 0 end  as Actuaciones_Iniciadas
+from
+  Fecha f
+left join
+  SumarioFecha s
+on
+ DATEPART(s.fechaAceptacionDeCompetencia)=f.fecha 
+where
+  s.fechaAceptacionDeCompetencia is not null
+group by
+  f.fecha;
+quit;
+
+/*Cantidad de preresoluciones envíadas a Firma Ministro*/
+
+proc sql;
+create table tabla3S as
+select 
+  f.fecha,
+  case when count(distinct s.numero) > 0 then count(distinct s.numero) else 0 end  as SuMenosPrereso
+from
+  Fecha f
+left join
+  SumarioFecha s
+on
+  DATEPART(s.fechaPRERESOsancion) = f.fecha 
+where 
+s.EstadoActuacion <> '12) Incompetencia'
+group by
+  f.fecha;
+quit;
+
+/*Cantidad de Actuaciones con estado = "11)Incompetencia" y con FechaIncompetencia en el dia del campo Fecha*/
+
+proc sql;
+create table tabla4S as
+select 
+  f.fecha,
+  case when count(distinct s.numero) > 0 then count(distinct s.numero) else 0 end  as SuMenosIncompetencia
+from
+  Fecha f
+left join
+  SumarioFecha s
+on
+  DATEPART(s.fechaIncompetencia) = f.fecha
+where 
+s.EstadoActuacion = '12) Incompetencia'
+group by
+  f.fecha;
+quit;
+
+
+
+/*Cantidad de Actuaciones con fecha Fin Sumario en el dia del campo Fecha*/
+proc sql;
+create table SuMenos0 as
+select
+  f.fecha,
+  case when count(distinct s.numero) > 0 then count(distinct s.numero) else 0 end as SuMenos0
+from
+  Fecha f
+left join
+  SumarioFecha s
+on
+ DATEPART(s.fechaFinSumario) = f.fecha
+where
+s.EstadoActuacion ='11) Finalizado'
+group by
+  f.fecha;
+quit;
+
+proc sql;
+create table SuMenos1 as
+select
+  f.fecha,
+  case when count(distinct s.numero) > 0 then count(distinct s.numero) else 0 end as SuMenos1
+from
+  Fecha f
+left join
+  SumarioFecha s
+on
+ DATEPART(s.fechaIncompetencia) = f.fecha 
+where
+s.EstadoActuacion ='12) Incompetencia'
+group by
+  f.fecha;
+quit;
+
+proc sql;
+create table tabla5S as
+select
+f.fecha,
+coalesce(t1.SuMenos0, 0) + coalesce(t2.SuMenos1, 0) as SuMenos
+from Fecha f
+left join SuMenos0 t1 on(t1.fecha = f.fecha)
+left join SuMenos1 t2 on(t2.fecha = f.fecha);
+
+/*Promedio de los días entre fecha de aceptacion e fecha ingreso OTCE*/
+
+proc sql;
+create table tabla6S as
+select 
+f.fecha,
+round(avg(datepart(s.fechaAceptacionDeCompetencia) - datepart(s.FechaIngresoOTCE)),0.01) as PromedioDiasSinAceptacion
+from 
+	(select distinct s.numero, s.fechaAceptacionDeCompetencia, s.FechaIngresoOTCE from SumarioFecha s) s
+left join fecha f on datepart(s.fechaAceptacionDeCompetencia) = f.fecha 
+group by
+  f.fecha;
+quit;
+
+
+/*Cantidad de DN con fecha intervención OTCE en el dia del campo Fecha*/
+
+proc sql;
+create table tabla7D as
+select 
+  f.fecha,
+   case when count(distinct s.numero) > 0 then count(distinct s.numero) else 0 end as DNFechaIntervencionOTC
+from
+  fecha f
+left join
+  FechaDenuncias s
+on
+  DATEPART(s.fechaintervencionOTCE) = f.fecha 
+group by
+  f.fecha;
+quit;
+
+
+
+/* Cantidad de DN con Fecha Fin en el dia del campo Fecha */  
+
+proc sql;
+create table DNFechaFinMenos0 as
+select 
+  f.fecha,
+   case when count(distinct s.numero) > 0 then count(distinct s.numero) else 0 end as data1
+from
+  fecha f
+left join
+  FechaDenuncias s
+on
+  DATEPART(s.fechaFin) = f.fecha 
+group by
+  f.fecha;
+quit;
+
+
+
+proc sql;
+create table DNFechaFinMenos1 as
+select 
+  f.fecha,
+   case when count(distinct s.numero) > 0 then count(distinct s.numero) else 0 end as data2
+from
+  fecha f
+left join
+  FechaDenuncias s
+on
+  DATEPART(s.UltimaFechaEstado) = f.fecha  
+and s.fechaFin is null and s.estado  in ('FINALIZADO - EXTERNO', 'FINALIZADO INTERNO','CERRADO')
+group by
+  f.fecha;
+quit;
+
+
+
+proc sql;
+create table tabla9D as
+select 
+   f.fecha,
+   t1.data1 + t2.data2 as DNFechaFinMenos
+from
+  fecha f
+left join DNFechaFinMenos0 t1 on(t1.fecha=f.fecha)
+left join DNFechaFinMenos1 t2 on(t2.fecha=f.fecha);
+quit;
+
+/*Cantidad de AP con fechaInicio ó fechaHora en el dia del campo Fecha*/
+
+proc sql;
+create table tabla10A as
+select 
+  f.fecha,
+   case when count(distinct s.numero) > 0 then count(distinct s.numero) else 0 end as APFechaInicioOFechaHora
+from
+  fecha f
+left join
+  AveriguacionPrevia s
+on
+  s.APMas = f.fecha 
+group by
+  f.fecha;
+quit;
+
+/*Cantidad de AP con Fecha Fin en el dia del campo Fecha*/
+
+proc sql;
+create table APFechaFinMenos0 as
+select 
+  f.fecha,
+   case when count(distinct s.numero) > 0 then count(distinct s.numero) else 0 end as data1
+from
+  fecha f
+left join
+  AveriguacionPrevia s
+on
+ DATEPART(s.fechaFin) = f.fecha 
+group by
+  f.fecha;
+quit;
+
+proc sql;
+create table APFechaFinMenos1 as
+select 
+  f.fecha,
+   case when count(distinct s.numero) > 0 then count(distinct s.numero) else 0 end as data2
+from
+  fecha f
+left join
+  AveriguacionPrevia s
+on
+ DATEPART(s.UltimaFechaEstado) =f.fecha 
+and  DATEPART(s.fechaFin) is null  and s.Estado in ('FINALIZADA', 'CERRADA' )
+group by
+  f.fecha;
+quit;
+
+
+proc sql;
+create table tabla11A as
+select 
+  f.fecha,
+   t1.data1 + t2.data2 as APFechaFinMenos
+from
+  fecha f
+left join APFechaFinMenos0 t1 on(t1.fecha = f.fecha)
+left join APFechaFinMenos1 t2 on(t2.fecha = f.fecha);
+quit;
+
+
+
+/* Crear la tabla con la cantidad de fechas mínimas por dia */
+proc sql;
+create table Tabla22A as
+select
+    f.fecha,
+    count(DISTINCT s.MinimaFecha) AS CantidadAPFirmasecretario
+from
+    fecha f
+left join
+    LogAPfirmaminimascretario s on (DATEPART(s.MinimaFecha) =f.fecha)
+GROUP BY
+    f.fecha;
+quit;
+
+
+
+/*Contar la cantidad de requerimientos recibidos por dia. (Contar la cantidad de novedades
+ por dia, cuyo tipo de novedad sea "Requerimiento Judicial")*/
+
+proc sql;
+create table tabla19A as
+select 
+ f.fecha,
+ count(f.fecha) as RequerimientosJudiciales
+from fecha  f
+left join  SIGAD.Novedades t1 on DATEPART(t1.fechaDeLaNovedad) = f.fecha
+left join SIGAD.TipoDeNovedad t2 on (t2.id = t1.tipoDeNovedad)
+where t2.nombre='Requerimientos Judiciales'
+group by
+  f.fecha;
+quit;
+
+
+
+
+
+/*Cantidad de Sanciones donde dia  de Fecha Sancion es igual al dia  de Campo Fecha, y el campo Sanción Comienza con "Cesant"*/
+
+/*Censatias*/
+
+proc sql;
+create table Censatias0 as
+select 
+  f.fecha,
+  case when count(distinct s.NumeroMasLp) > 0 then count(distinct s.NumeroMasLp) else 0 end as data1
+from
+  fecha f
+left join
+  SumarioFecha s
+on
+	DATEPART(s.fechaSancion) =f.fecha 
+where s.tipodesancion like 'Cesant%' and s.EstadoActuacion = '11) Finalizado'
+group by
+  f.fecha;
+quit;
+
+proc sql;
+create table Censatias1 as
+select 
+  f.fecha,
+  case when count(distinct s.NumeroMasLp) > 0 then count(distinct s.NumeroMasLp) else 0 end as data2
+from
+  fecha f
+left join
+  SumarioFecha s
+on
+DATEPART(s.UltimaFechaEstado) = f.fecha  and s.fechaSancion is null 
+where s.tipodesancion like 'Cesant%' and s.EstadoActuacion = '11) Finalizado'
+group by
+  f.fecha;
+quit;
+
+
+proc sql;
+create table tabla13C as
+select 
+  f.fecha,
+  coalesce(t1.data1, 0) + coalesce(t2.data2, 0) as Censatias
+from
+  fecha f
+left join Censatias0 t1 on(t1.fecha = f.fecha)
+left join Censatias1 t2 on(t2.fecha = f.fecha);
+quit;
+
+
+
+
+
+/*Exoneracion*/
+
+proc sql;
+create table Exoneracion0 as
+select 
+  f.fecha,
+  case when count(distinct s.NumeroMasLp) > 0 then count(distinct s.NumeroMasLp) else 0 end as data1
+from
+  fecha f
+left join
+  SumarioFecha s
+on
+  DATEPART(s.fechaSancion) = f.fecha
+where s.tipodesancion like 'Exone%' and s.EstadoActuacion = '11) Finalizado'
+group by
+  f.fecha;
+quit;
+
+proc sql;
+create table Exoneracion1 as
+select 
+  f.fecha,
+  case when count(distinct s.NumeroMasLp) > 0 then count(distinct s.NumeroMasLp) else 0 end as data2
+from
+  fecha f
+left join
+  SumarioFecha s
+on
+ DATEPART(s.UltimaFechaEstado) = f.fecha and s.fechaSancion is null 
+where s.tipodesancion like 'Exone%' and s.EstadoActuacion = '11) Finalizado'
+group by
+  f.fecha;
+quit;
+
+proc sql;
+create table tabla14E as
+select 
+  f.fecha,
+  coalesce(t1.data1, 0) + coalesce(t2.data2, 0) as Exoneracion
+from
+  fecha f
+left join Exoneracion0 t1 on(t1.fecha = f.fecha)
+left join Exoneracion1 t2 on(t2.fecha = f.fecha);
+quit;
+
+
+
+/*Suspensivas*/
+
+proc sql;
+create table Suspensivas0 as
+select 
+  f.fecha,
+  case when count(distinct s.NumeroMasLp) > 0 then count(distinct s.NumeroMasLp) else 0 end as data1
+from
+  fecha f
+left join
+  SumarioFecha s
+on
+  DATEPART(s.fechaSancion) = f.fecha 
+where s.tipodesancion like 'Susp%' and s.EstadoActuacion = '11) Finalizado'
+group by
+  f.fecha;
+quit;
+
+proc sql;
+create table Suspensivas1 as
+select 
+  f.fecha,
+  case when count(distinct s.NumeroMasLp) > 0 then count(distinct s.NumeroMasLp) else 0 end as data2
+from
+  fecha f
+left join
+  SumarioFecha s
+on
+ DATEPART(s.UltimaFechaEstado) = f.fecha and s.fechaSancion is null 
+where s.tipodesancion like 'Susp%' and s.EstadoActuacion = '11) Finalizado'
+group by
+  f.fecha;
+quit;
+
+proc sql;
+create table tabla15S as
+select 
+  f.fecha,
+  coalesce(t1.data1, 0) + coalesce(t2.data2, 0) as Suspensivas
+from
+  fecha f
+left join Suspensivas0 t1 on(t1.fecha = f.fecha)
+left join Suspensivas1 t2 on(t2.fecha = f.fecha);
+quit;
+
+
+/*Eximision*/
+
+proc sql;
+create table Eximision0 as
+select 
+  f.fecha,
+  case when count(distinct s.NumeroMasLp) > 0 then count(distinct s.NumeroMasLp) else 0 end as data1
+from
+  fecha f
+left join
+  SumarioFecha s
+on
+  DATEPART(s.fechaSancion) = f.fecha
+where s.tipodesancion like 'Exi%' and s.EstadoActuacion = '11) Finalizado'
+group by
+  f.fecha;
+quit;
+
+proc sql;
+create table Eximision1 as
+select 
+  f.fecha,
+  case when count(distinct s.NumeroMasLp) > 0 then count(distinct s.NumeroMasLp) else 0 end as data2
+from
+  fecha f
+left join
+  SumarioFecha s
+on
+DATEPART(s.UltimaFechaEstado) = f.fecha and s.fechaSancion is null 
+where s.tipodesancion like 'Exi%' and s.EstadoActuacion = '11) Finalizado'
+group by
+  f.fecha;
+quit;
+
+proc sql;
+create table tabla16E as
+select 
+  f.fecha,
+  coalesce(t1.data1, 0) + coalesce(t2.data2, 0) as Eximision
+from
+  fecha f
+left join Eximision0 t1 on(t1.fecha = f.fecha)
+left join Eximision1 t2 on(t2.fecha = f.fecha);
+quit;
+
+/*otros*/
+
+
+
+proc sql;
+create table otros0 as
+select 
+  f.fecha,
+  case when count(distinct s.NumeroMasLp) > 0 then count(distinct s.NumeroMasLp) else 0 end as data1
+from
+  fecha f
+left join
+  SumarioFecha s
+on
+  DATEPART(s.fechaSancion) = f.fecha 
+where s.tipodesancion is not null and s.EstadoActuacion = '11) Finalizado'
+group by
+  f.fecha;
+quit;
+
+proc sql;
+create table otros1 as
+select 
+  f.fecha,
+  case when count(distinct s.NumeroMasLp) > 0 then count(distinct s.NumeroMasLp) else 0 end as data2
+from
+  fecha f
+left join
+  SumarioFecha s
+on
+ DATEPART(s.UltimaFechaEstado) = f.fecha  and s.fechaSancion is null 
+where  s.tipodesancion is not null and s.EstadoActuacion = '11) Finalizado'
+group by
+  f.fecha;
+quit;
+
+proc sql;
+create table tabla17O as
+select 
+  f.fecha,
+  coalesce(t1.data1, 0) + coalesce(t2.data2, 0) as otros
+from
+  fecha f
+left join otros0 t1 on(t1.fecha = f.fecha)
+left join otros1 t2 on(t2.fecha = f.fecha);
+quit;
+
+
+/*Cantidad de DN con fecha intervención OTCE en el dia campo Fecha y con el campo LP del denunciante no vacío o <> a "No Aporta"*/
+
+
+proc sql;
+create table tabla18C as
+select 
+	f.fecha,
+SUM(CASE 
+    WHEN DATEPART(s.fechaintervencionOTCE) IS NOT NULL 
+        AND DATEPART(s.fechaintervencionOTCE) = f.fecha 
+        AND s.denuncianteLp IS NOT NULL 
+        AND s.denuncianteLp <> 'No aporta'
+        AND MISSING(INPUT(s.denuncianteLp, BEST.)) = 0
+    THEN 1 
+    ELSE 0 
+END) as Confianza_Q,
+	sum(
+    case 
+        when DATEPART(s.fechaintervencionOTCE)= f.fecha
+        and year(DATEPART(s.fechaintervencionOTCE))= YEAR(f.fecha) 
+        then 1 
+        else 0 
+	end
+) as Confianzapor,
+	SUM(CASE 
+    WHEN DATEPART(s.fechaintervencionOTCE) IS NOT NULL 
+        AND DATEPART(s.fechaintervencionOTCE) = f.fecha 
+        AND s.denuncianteLp IS NOT NULL 
+        AND s.denuncianteLp <> 'No aporta'
+         AND MISSING(INPUT(s.denuncianteLp, BEST.)) = 0
+    THEN 1 
+    ELSE 0 
+END) / sum(
+    case 
+        when DATEPART(s.fechaintervencionOTCE)= f.fecha 
+        then 1 
+        else 0 
+    end
+) as Resultado
+from
+  fecha f
+left join
+  FechaDenuncias s
+on
+  DATEPART(s.fechaintervencionOTCE) = f.fecha 
+group by
+  f.fecha;
+quit;
+
+
+/* Tabla auxiliar para SUStock_90 dias */
+
+proc sql;
+create table auxiliar_SUSstock0 as
+select 
+f.fecha,
+   case when count(distinct s.numero) > 0 then count(distinct s.numero) else 0 end as dato1su
+from
+  fecha f
+left join
+  SumarioFecha s
+on
+    DATEPART(s.fechaAceptacionDeCompetencia) <= f.fecha 
+where
+s.fechaAceptacionDeCompetencia is not null
+group by
+  f.fecha;
+quit;
+
+proc sql;
+create table auxiliar_SUSstock1 as
+select 
+f.fecha,
+   case when count(distinct s.numero) > 0 then count(distinct s.numero) else 0 end as dato2su
+from
+  fecha f
+left join
+  SumarioFecha s
+on
+  DATEPART(s.fechaPRERESOsancion) <= f.fecha 
+where 
+s.EstadoActuacion <> '12) Incompetencia' and s.fechaPRERESOsancion is not null 
+group by
+  f.fecha;
+quit;
+
+
+proc sql;
+create table auxiliar_SUSstock2 as
+select 
+f.fecha,
+   case when count(distinct s.numero) > 0 then count(distinct s.numero) else 0 end as dato3su
+from
+  fecha f
+left join
+  SumarioFecha s
+on
+  DATEPART(s.fechaIncompetencia) <= f.fecha 
+where 
+s.EstadoActuacion = '12) Incompetencia' 
+group by
+  f.fecha;
+quit;
+
+
+
+
+proc sql;
+create table auxiliar_SUStock as
+select 
+  t1.fecha,
+  t2.dato1su,
+  t3.dato2su,
+  t4.dato3su,
+  coalesce(t2.dato1su,0) - coalesce(t3.dato2su, 0) - coalesce(t4.dato3su,0) as SUStock_Dias
+   from fecha t1
+   left join auxiliar_SUSstock0 t2 on (t1.fecha = t2.fecha)
+   left join auxiliar_SUSstock1 t3 on (t1.fecha = t3.fecha)
+   left join auxiliar_SUSstock2 t4 on (t1.fecha = t4.fecha);
+quit;
+
+/* Tabla auxiliar para DNStock_90 dias */
+proc sql;
+create table auxiliar_DNStock as
+select 
+  t0.fecha,
+  (select SUM(COALESCE(t7.DNFechaIntervencionOTC, 0) - COALESCE(t8.DNFechaFinMenos, 0)) 
+   from fecha t1
+   left join tabla7D t7 on (t1.fecha = t7.fecha)
+   left join tabla9D t8 on (t1.fecha = t8.fecha)
+   where t1.fecha <= t0.fecha) as DNStock_Dias
+from fecha t0;
+quit;
+
+/* Tabla auxiliar para APStock_90 dias */
+proc sql;
+create table auxiliar_APStock as
+select 
+  t0.fecha,
+  (select SUM(COALESCE(t9.APFechaInicioOFechaHora, 0) - COALESCE(t10.APFechaFinMenos, 0)) 
+   from fecha t1
+   left join tabla10A t9 on (t1.fecha = t9.fecha)
+   left join tabla11A t10 on (t1.fecha = t10.fecha)
+   where t1.fecha <= t0.fecha) as APStock_Dias
+from fecha t0;
+quit;
+
+/*Auxiliar para calcula tabla FIRMA O FECHA FIN */
+
+proc sql;
+create table AuxiliarFirmaSubOFechaFin as
+select 
+  f.fecha,
+   case when count(distinct s.numero) > 0 then count(distinct s.numero) else 0 end as CantidadFirmaOfechafin
+from
+  fecha f
+left join
+  AveriguacionPrevia as s on (s.FechaFinOFechaFirma = f.fecha) 
+group by
+  f.fecha;
+quit;
+
+
+/* Tabla auxiliar para APStock_90 dias _Firma_Secretaria O Fecha Fin */
+proc sql;
+create table FechaDeFirmaSubOFechaFin as
+select 
+  t0.fecha,
+  (select 
+	SUM(COALESCE(t9.APFechaInicioOFechaHora, 0) - COALESCE(t10.CantidadFirmaOfechafin, 0)) 
+   from fecha t1
+   left join tabla10A t9 on (t1.fecha = t9.fecha)
+   left join AuxiliarFirmaSubOFechaFin t10 on (t1.fecha = t10.fecha)
+   where t1.fecha <= t0.fecha) as APStock_Firma_o_FechaFin
+from fecha t0;
+quit;
+
+
+
+
+/* ---------------------TABLAS UNIDAS------------------------------------------- */ 
+
+proc sql;
+create table ModeloSigad as
+select 
+t0.fecha,
+COALESCE(t1.SuParaAceptar, 0) as SuParaAceptar,
+COALESCE(t2.Actuaciones_Iniciadas,0) as Actuaciones_Iniciadas,
+COALESCE(t3.SuMenosPrereso,0) as SuMenosPrereso,
+COALESCE(t4.SuMenosIncompetencia,0) as SuMenosIncompetencia,
+COALESCE(t19.SUStock_Dias,0) as SUStock_90Dias,
+COALESCE(t5.SuMenos,0) as SuMenos,
+COALESCE(t6.PromedioDiasSinAceptacion,0) as PromedioDiasSinAceptacion,
+COALESCE(t7.DNFechaIntervencionOTC,0) as DNFechaIntervencionOTC,
+COALESCE(t8.DNFechaFinMenos,0) as DNFechaFinMenos,
+COALESCE(t20.DNStock_Dias,0) as DNStock_90Dias,
+COALESCE(t22.CantidadAPFirmasecretario,0) as Fecha_La_Firma_SubSecretario,
+COALESCE(t9.APFechaInicioOFechaHora,0) as APFechaInicioOFechaHora,
+COALESCE(t10.APFechaFinMenos,0) as APFechaFinMenos,
+COALESCE(t23.APStock_Firma_o_FechaFin,0) as APStock_Firma_FechaFin,
+COALESCE(t21.APStock_Dias,0) as APStock_90Dias,
+COALESCE(t18.RequerimientosJudiciales,0) as RequerimientosJudiciales,
+COALESCE(t12.Censatias,0) as Censatias,
+COALESCE(t13.Exoneracion,0) as Exoneracion,
+COALESCE(t14.Suspensivas,0) as Suspensivas,
+COALESCE(t15.Eximision,0) as Eximision,
+COALESCE(t16.otros,0) as otros,
+COALESCE(t17.Confianza_Q,0) as Confianza_Q, 
+COALESCE(t17.Resultado,0) as Confianza_Resultado
+from fecha t0
+left join tabla1S t1 on (t0.fecha = t1.fecha)
+left join tabla2S t2 on (t0.fecha = t2.fecha)
+left join tabla3S t3 on (t0.fecha = t3.fecha)
+left join tabla4S t4 on (t0.fecha = t4.fecha)
+left join tabla5S t5 on (t0.fecha = t5.fecha) 
+left join tabla6S t6 on (t0.fecha = t6.fecha)
+left join tabla7D t7 on (t0.fecha = t7.fecha)
+left join tabla9D t8 on (t0.fecha = t8.fecha)
+left join tabla10A t9 on (t0.fecha = t9.fecha)
+left join tabla11A t10 on (t0.fecha = t10.fecha)
+left join tabla13C t12 on (t0.fecha = t12.fecha)
+left join tabla14E t13 on (t0.fecha = t13.fecha)
+left join tabla15S t14 on (t0.fecha = t14.fecha)
+left join tabla16E t15 on (t0.fecha = t15.fecha)
+left join tabla17O t16 on (t0.fecha = t16.fecha)
+left join tabla18C t17 on (t0.fecha = t17.fecha)
+left join tabla19A t18 on (t0.fecha = t18.fecha)
+left join tabla22A t22 on (t0.fecha = t22.fecha)
+left join auxiliar_SUStock t19 on (t0.fecha = t19.fecha)
+left join auxiliar_DNStock t20 on (t0.fecha = t20.fecha)
+left join auxiliar_APStock t21 on (t0.fecha = t21.fecha)
+left join FechaDeFirmaSubOFechaFin t23 on (t0.fecha = t23.fecha)
+where t0.fecha >= intnx('day', today(), -90) and t0.fecha <= today();
+quit;
+
+
+
+
+proc cas;
+   table.droptable caslib="transparencia" name="Base_90_Dias_Sigad";
+quit;
+
+
+
+proc casutil outcaslib="transparencia"; 
+	load data=work.ModeloSigad    casout='Base_90_Dias_Sigad'    	promote ;
+quit;
+
+proc casutil incaslib="transparencia" outcaslib="transparencia";
+    save casdata='Base_90_Dias_Sigad' 		replace;
+quit;
+
+
+
+proc export data=work.ModeloSigad
+outfile="/sastmp/archivo_transparencia.xlsx"
+dbms= xlsx replace;
+run;

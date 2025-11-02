@@ -1,0 +1,136 @@
+body{
+    background-color: #241e00; /* Fondo: Amarillo oscuro */
+}
+
+/* Estilos para el wrapper principal */
+.wrap {
+  margin: 20px;
+  text-align: center;
+  border: 3px solid #fff;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  background-color: #909695;
+}
+
+
+label {
+  margin: 0 10px;
+  font-weight: bold;
+  font-size: 16px;
+  color: #ffff;
+}
+
+input[type="text"],
+select,
+input[type="date"],
+input[type="time"] {
+  padding: 5px 10px;
+  font-size: 16px;
+  border: 2px solid #ffff;
+  border-radius: 5px;
+  margin: 5px;
+  width: 200px;
+}
+
+input[type="submit"] {
+  padding: 5px 20px;
+  font-size: 16px;
+  background-color: #FFD401;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.contenedor{
+  color: #ffff;
+}
+/* Estilos para los títulos en las tarjetas */
+h5 {
+  font-size: 15px !important;
+}
+
+
+.carpetas {
+  position: relative;
+  display: inline-flex;
+  margin: 20px;
+  height: 300px;
+  width: 300px;
+  border-radius: 100px;
+  margin-bottom: 20px;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  left: 50px;
+}
+
+.col {
+  padding: 0;
+}
+
+.card {
+  background-color: #FFFFE0;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card h5 {
+  margin: 0;
+}
+
+.card hr {
+  border-color: #FFD700;
+}
+
+.card-body {
+  padding-top: 10px;
+}
+
+.card-title {
+  color: #FF4500; /* Rojo anaranjado */
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.card-text {
+  font-size: 16px;
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.card ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.card ul li {
+  margin: 5px 0;
+}
+
+.card ul li a {
+  text-decoration: none;
+  color: #1c6ea4; /* Azul */
+}
+
+.card ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Ajustes para hacer los contenedores más estrechos */
+.card {
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+/* Estilos adicionales para resaltar tarjetas en pantallas pequeñas */
+@media (max-width: 576px) {
+  .card {
+    max-width: 100%;
+  }
+}

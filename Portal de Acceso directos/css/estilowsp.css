@@ -1,0 +1,56 @@
+    #whatsappButton {
+        position: fixed;
+        right: 20px;
+        padding:20px 0px;
+        bottom: 80px; /* Para que no se superponga con otros botones */
+        z-index: 20;
+        cursor: pointer;
+    }
+
+    #whatsappButton a {
+        display: block;
+        width: 60px;
+        height: 60px;
+        background-color: #25d366;
+        border-radius: 50%;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    #whatsappButton a:hover {
+        background-color: #128c7e;
+        transform: scale(1.1);
+    }
+
+    #whatsappButton img {
+        width: 30px;
+        height: 30px;
+    }
+
+        /* Tooltip */
+    .tooltip {
+        visibility: hidden;
+        position: absolute;
+        bottom: 70px; /* Ajustar según la posición del botón */
+        left: -300%;
+        transform: translateX(-50%);
+        background-color: rgba(0, 0, 0, 0.8);
+        color: #fff;
+        padding: 10px;
+        border-radius: 5px;
+        font-size: 12px;
+        text-align: center;
+        white-space: nowrap;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        z-index: 100;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    #whatsappButton a:hover .tooltip {
+        visibility: visible;
+        opacity: 1;
+    }

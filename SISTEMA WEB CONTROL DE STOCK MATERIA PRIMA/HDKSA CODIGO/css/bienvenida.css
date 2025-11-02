@@ -1,0 +1,232 @@
+.fondogris {
+  background-image: url('../imagenes/fondobienvenida.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+.fondogris{
+     position: fixed;
+    width: 100%;
+    height: 1400px;
+    z-index: 10;
+    background-color: #ffff;
+    animation:subanimacion  2s;
+    animation-delay: 3s;
+    animation-fill-mode: forwards;
+      text-align: center;
+}
+
+.fondogris_imag{
+    border-radius: 50%;
+    height: 250px;
+
+}
+
+@keyframes subanimacion{
+
+    0%{
+        top:0;
+    }
+
+    100%{
+        top:-1500px;
+    }
+
+    }
+
+
+.textobienvenida {
+  width: 0px;
+  overflow: hidden;
+  white-space: nowrap;
+  color: #3f48cc;
+  font-size: 45px;
+  margin: 15% auto;
+  font-family: Stencil Std;
+  border-right: 0.15em solid #fff;
+  text-shadow: 0px 5px 3px #fff;
+   text-align: center;
+  animation: typing 3s steps(38) 0.5s 1 normal both, blink 0.5s steps(1) ;
+}
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+
+
+/*------------------------------------ fondo de pantalla oscurece nuva la imagen*/
+
+
+
+/* Estilos para el wrapper principal */
+.wrap {
+  margin: auto;
+  text-align: center;
+  border: 3px solid #fff;
+  box-shadow: 0px 0px 25px #fff;
+  backdrop-filter: blur(10px);
+}
+
+/* Estilos para el contenedor principal */
+.contenedor {
+  color: #000;
+
+}
+
+/* Estilos para la imagen de fondo */
+.imageninicio {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: -10;
+}
+
+.imageninicio_imag {
+  width: 100%;
+  height: 100%;
+}
+
+
+/* descarga pdf  */
+
+button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+    .pdf-btn {
+  background-color: #1c6ea4;
+  border: none;
+  color: white;
+  padding: 10px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.imagenpdf {
+margin-left: -5px;
+  width: 35px;
+  height: 50px;
+}
+
+/* Estilos para el texto de bienvenida en pantallas pequeñas */
+@media only screen and (max-width: 1300px) {
+  .textobienvenida {
+    font-size: 20px;
+    margin: 50% auto;
+  }
+}
+
+/* Estilos para las tarjetas */
+.card {
+  width: 16rem;
+  display: inline-block;
+  margin: 10px;
+  box-shadow: 2px 2px 5px #ccc;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-title {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.card-text {
+  font-size: 16px;
+}
+
+/* Estilos para las tarjetas en pantallas pequeñas */
+@media (max-width: 576px) {
+  .card {
+    width: 100%;
+  }
+
+  .TotalesKilos{
+    position: absolute;
+    top: 50px;
+}
+
+.contenedor{
+  position: absolute;
+}
+}
+
+/* Estilos para el formulario */
+form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+label {
+  margin: 0 10px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+input[type="text"],
+select,
+input[type="date"],
+input[type="time"] {
+  padding: 5px 10px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  margin: 5px;
+  width: 200px;
+}
+
+input[type="submit"] {
+  padding: 5px 20px;
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+/* Estilos para los títulos en las tarjetas */
+h5 {
+  font-size: 15px !important;
+}
+
+
+.TotalesKilos{
+  position: absolute;
+  margin-top: -50px;
+
+}

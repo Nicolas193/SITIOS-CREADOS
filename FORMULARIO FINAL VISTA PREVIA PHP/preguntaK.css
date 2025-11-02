@@ -1,0 +1,93 @@
+/* color, centrado de toda la ventada, tamaño de pantalla ancho, margenes centrado, ancho */
+.portada{
+   background-color: #2d6b48;
+   text-align: center;
+   margin: auto;
+   width: 60%;
+   height: 1300px;
+}
+/* contenedor imagen */
+.logo{
+   padding: 50px 0 0 0;
+}
+/* imagen */
+.logo-img{
+   height: 200px;
+   box-shadow:0px 0px 2px 2px #338b58;
+}
+/* texto para que realicen la encuentra */ 
+.titulo{
+   padding: 30px;
+      color: #ffff;
+   font-size: 20px;
+   text-shadow: 0 0 2px #000;
+}
+
+/* preguntas de encuenta*/
+p{
+   font-size: 20px;
+   margin: 50px;
+   font-family: Arial;
+   background-color: #fff;
+    border-radius: 5px;
+
+}
+/* escala de los cuadrantes de la primera opcion*/
+
+input[type=checkbox]
+{
+  -ms-transform: scale(2);
+  -moz-transform: scale(2); 
+  -webkit-transform: scale(2); 
+  -o-transform: scale(2);
+}
+
+/* Ke insumos negrita */
+b{
+   font-size: 18px;
+}
+
+/* respondi aqui cuadro de respuesta de las ultimas dos preguntas*/
+.pregunta3 input{
+    width: 400px;
+    border-radius: 5px;
+    box-shadow:0.5px 0.5px 0.5px 2.0px #6ec862;
+}
+
+/* marca de agura "responde aqui "*/
+.pregunta3-op{
+       font-size: 18px;
+}
+
+/* caja contenedora boton enviar */
+.enviar{
+   margin: 50px;
+   font-size: 30px;  
+}
+
+/* boton enviar*/
+#submit{
+   border-radius: 10px;
+    box-shadow:0.5px 0.5px 0.5px 2.0px #ffff;
+    padding: 5px;
+    cursor:pointer ;
+ }
+
+/* pasar puntero efecto*/
+ #submit:hover{
+   font-size: 31px;
+   background-color: #969696;
+ }
+
+/* responsi celular*/
+@media only screen and (max-width: 1100px){
+
+.portada{
+   width: 100%;
+}
+
+.pregunta3 input{
+   width: 300px;
+}
+
+}

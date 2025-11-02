@@ -1,0 +1,328 @@
+.content1 {
+  width: 100%;
+  margin-left: 220px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding: 0 20px;
+  background-color: transparent; /* 🔁 Aquí cambia el blanco por transparente */
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(21, 101, 192, 0.15);
+  box-sizing: border-box;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+/* ==== Formulario ==== */
+.form-container {
+  background: white;
+  padding: 25px 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(21, 101, 192, 0.2);
+  margin-bottom: 50px;
+  width: 100%;
+  max-width: 960px;
+  box-sizing: border-box;
+}
+
+.form-container h2 {
+  color: #0d47a1;
+  font-weight: 700;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+/* Grid formulario */
+form.form-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px 30px;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+/* Etiquetas */
+form.form-wrapper label {
+  font-weight: 600;
+  font-size: 14px;
+  color: #1565c0;
+  margin-top: 15px;
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* Inputs */
+form.form-wrapper input[type="text"],
+form.form-wrapper input[type="password"],
+form.form-wrapper input[type="number"],
+form.form-wrapper input[type="email"],
+form.form-wrapper select {
+  padding: 10px 12px;
+  font-size: 14px;
+  border: 2px solid #bbdefb;
+  border-radius: 8px;
+  transition: border-color 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+form.form-wrapper input[type="text"]:focus,
+form.form-wrapper input[type="password"]:focus,
+form.form-wrapper input[type="number"]:focus,
+form.form-wrapper input[type="email"]:focus,
+form.form-wrapper select:focus {
+  outline: none;
+  border-color: #1565c0;
+}
+
+/* ==== Botones estilo principal (Registrar, Buscar, Actualizar) ==== */
+.btn-primary,
+form.form-wrapper input[type="submit"],
+form[method="POST"] input[type="submit"],
+form[method="GET"] input[type="submit"],
+table.table input[type="submit"] {
+  background: linear-gradient(135deg, #0078d7, #00b0ff);
+  border: none;
+  color: white;
+  font-weight: 700;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 10px 20px;
+  box-shadow: 0 4px 10px rgba(21, 101, 192, 0.3);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  user-select: none;
+  text-align: center;
+  max-width: 200px;
+  justify-self: start;
+  display: inline-block;
+}
+
+.btn-primary:hover,
+form.form-wrapper input[type="submit"]:hover,
+form[method="POST"] input[type="submit"]:hover,
+form[method="GET"] input[type="submit"]:hover,
+table.table input[type="submit"]:hover {
+  background: linear-gradient(135deg, #005ea6, #008cff);
+  box-shadow: 0 5px 15px rgba(0, 120, 215, 0.7);
+}
+
+.btn-primary:active,
+form.form-wrapper input[type="submit"]:active,
+form[method="POST"] input[type="submit"]:active,
+form[method="GET"] input[type="submit"]:active,
+table.table input[type="submit"]:active {
+  background: linear-gradient(135deg, #004a82, #0077d1);
+  box-shadow: 0 2px 8px rgba(0, 120, 215, 0.3);
+  transform: translateY(1px);
+}
+
+/* ==== Sección lista ==== */
+.list-section {
+  background: white;
+  padding: 30px 30px 40px 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(21, 101, 192, 0.2);
+  width: 100%;
+  
+  box-sizing: border-box;
+  margin-bottom: 40px;
+}
+
+.list-section h2 {
+  color: #0d47a1;
+  font-weight: 700;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* Buscador */
+form[method="GET"] {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+form[method="GET"] input[type="text"] {
+  flex-grow: 1;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border-radius: 30px 0 0 30px;
+  border: 2px solid #0078d7;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
+}
+
+form[method="GET"] input[type="text"]:focus {
+  border-color: #005ea6;
+  outline: none;
+  box-shadow: 0 0 6px #005ea6;
+}
+
+form[method="GET"] input[type="submit"] {
+  max-width: 120px;
+  padding: 10px 0;
+  grid-column: unset;
+  justify-self: unset;
+  border-radius: 0 30px 30px 0;
+  background-color: #0078d7; /* Consistente con degradado */
+  background: linear-gradient(135deg, #0078d7, #00b0ff);
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(21, 101, 192, 0.3);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+form[method="GET"] input[type="submit"]:hover {
+  background: linear-gradient(135deg, #005ea6, #008cff);
+  box-shadow: 0 5px 15px rgba(0, 120, 215, 0.7);
+}
+
+/* ==== Tabla ==== */
+table.table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+table.table thead {
+  background-color: #1565c0;
+  color: white;
+}
+
+table.table th,
+table.table td {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  text-align: left;
+}
+
+table.table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+table.table tbody tr:hover {
+  background-color: #e6f0ff;
+}
+
+/* Inputs dentro tabla */
+table.table input[type="text"],
+table.table input[type="email"],
+table.table input[type="number"],
+table.table select {
+  width: 100%;
+  padding: 6px 8px;
+  font-size: 13px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+}
+
+table.table input[type="text"]:focus,
+table.table input[type="email"]:focus,
+table.table input[type="number"]:focus,
+table.table select:focus {
+  outline: none;
+  border-color: #1565c0;
+}
+
+/* Responsive */
+@media screen and (max-width: 1024px) {
+  .content1 {
+    margin-left: 20px;
+    width: calc(100% - 20px);
+    max-width: 100%;
+  }
+  
+  .form-container, .list-section {
+    width: 100%;
+    padding: 15px 20px;
+    max-width: 100%;
+  }
+  
+  form[method="GET"] {
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  form[method="GET"] input[type="text"] {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  form.form-wrapper input[type="submit"],
+  .btn-primary,
+  form[method="GET"] input[type="submit"] {
+    font-size: 1rem;
+    padding: 10px 0;
+    max-width: 100%;
+  }
+}
+
+.btn-danger {
+  padding: 6px 14px;
+  background-color: #e53935;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 3px 8px rgba(229, 57, 53, 0.5);
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-danger:hover {
+  background-color: #c62828;
+  box-shadow: 0 5px 15px rgba(229, 57, 53, 0.7);
+}
+
+.btn-danger:active {
+  background-color: #b71c1c;
+  box-shadow: 0 2px 6px rgba(229, 57, 53, 0.4);
+  transform: translateY(1px);
+}
+
+.btn-update {
+  padding: 6px 14px;
+  background-color: #1565c0;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.btn-update:hover {
+  background-color: #0d47a1;
+}
+
+.btn-delete {
+  padding: 6px 14px;
+  background-color: #d32f2f;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  text-decoration: none;
+  margin-left: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-delete:hover {
+  background-color: #b71c1c;
+}

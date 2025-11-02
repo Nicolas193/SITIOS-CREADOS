@@ -1,0 +1,25 @@
+nav{
+	margin: 20px;
+}
+
+a{ 
+	padding: 5px;
+	font-size: 20px;
+	border-radius: 10px 10px 10px 10px;
+	opacity: 80%;
+	 color: #D3D3D3 !important;
+}
+.btn{
+	background-color: #000;
+}
+
+.btn:hover{
+	background-color: #000;
+}
+a:hover{
+	transition: 0.5s;
+	background-color: #000;
+	opacity: 100%;
+}
+
+

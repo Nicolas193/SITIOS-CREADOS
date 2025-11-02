@@ -1,0 +1,691 @@
+:root {
+  --bg: #1f2937;
+  --primary: #facc15;
+  --muted: #9aa2ad;
+  --text: #e6eef6;
+  --sub: #9aa2ad;
+  --maxw: 90vw; /* 🔸 antes 1200px → ahora 90% del ancho de la ventana */
+}
+
+
+
+body {
+  font-family: "Roboto", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 15px 0%; /* 🔸 más espacio proporcional en lugar de 28px fijos */
+  line-height: 1.45;
+    scroll-behavior: smooth; /* scroll suave */
+}
+
+.wave-top {
+  width: 100%;
+  height: 120px;              /* alto de la barra */
+  background: #facc15;        /* amarillo */
+  position: absolute;         
+  top: 0;
+  left: 0;
+  z-index: -1;                /* atrás del contenido pero arriba del fondo */
+  mask-image: url("data:image/svg+xml;utf8,<svg width='100%' height='100%' viewBox='0 0 1440 320' xmlns='http://www.w3.org/2000/svg'><path fill='black' d='M0,256L60,234.7C120,213,240,171,360,149.3C480,128,600,128,720,149.3C840,171,960,213,1080,197.3C1200,181,1320,107,1380,69.3L1440,32L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z'/></svg>");
+  mask-size: cover;
+  mask-repeat: no-repeat;
+}
+
+/* MENÚ */
+
+/* ===============================
+   MENÚ PROFESIONAL CON ESPACIO CENTRAL
+================================ */
+.menu {
+  width: 95%;
+  position: absolute;
+  display: flex;
+  justify-content: space-around; /* espacio entre los enlaces */
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05); /* sutil fondo semitransparente */
+  padding: 12px 30px;
+  border-radius: 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  top: 20px; 
+  z-index: 2;
+}
+
+/* Enlaces del menú */
+.menu a {
+  color: #111 !important; /* letras negras */
+  font-weight: 600;
+  text-decoration: none;
+  padding: 8px 18px;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  position: relative;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+/* Subrayado animado */
+.menu a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0%;
+  height: 3px;
+  background-color: #facc15; /* subrayado amarillo */
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+/* Hover funcional */
+.menu a:hover {
+  background: rgba(250, 203, 21, 0.15); /* hover amarillo suave */
+  color: #111;
+}
+
+.menu a:hover::after {
+  width: 60%;
+}
+
+/* Estado activo de sección */
+.menu a.active {
+  background: #facc15;
+  color: #111;
+}
+
+.menu a.active::after {
+  width: 60%;
+  background-color: #111;
+}
+
+/* Responsive: menú compacto en móviles */
+@media (max-width: 720px) {
+  .menu {
+    justify-content: center;
+    gap: 12px;
+    padding: 10px 15px;
+  }
+  .menu a {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+}
+
+
+/* Fondo estático anclado en el documento */
+.background-fixed {
+  position: absolute;         /* parte del documento, no del viewport */
+  top: 343px;                 /* ajustá según tu diseño */
+  left: 50%;                  /* centrado horizontal */
+  transform: translateX(-50%);/* evita movimiento lateral con zoom */
+  width: 1100px;
+  height: 900px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1000;
+  margin-left: -150px;
+  margin-top: 0px;
+}
+
+/* Imagen dentro del fondo */
+.background-fixed img {
+  display: block;
+  height: 900px;
+  width: 1110px ;
+  opacity: 0.1;
+  object-fit: contain;
+}
+
+
+
+
+/* ===============================
+   ESTRUCTURA PRINCIPAL
+================================ */
+.page {
+  max-width: var(--maxw);
+  width: 1900px; /* 🔸 asegura que use el 90% horizontal */
+  margin: 0 auto;
+}
+
+
+.header {
+  text-align: center;
+  margin-bottom: 36px;
+  position: relative;
+}
+
+/* ===============================
+   AVATAR + ANILLOS
+================================ */
+.avatar-wrap {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 18px;
+  width: 148px;
+  height: 148px;
+}
+
+.avatar {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 6px solid #fff;
+  position: relative;
+  z-index: 3;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+.avatar-ring-left {
+  position: absolute;
+  width: 205px;
+  height: 200px;
+  border-radius: 90%;
+  border: 6px solid var(--primary);
+  top: -3px;
+  left: -1px;
+  z-index: 2;
+  transform: translate(-5px, 3px);
+}
+
+.avatar-ring-right {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 3px solid rgba(0, 0, 0, 0.35);
+  top: 4px;
+  left: 6px;
+  z-index: 1;
+  transform: translate(5px, 6px);
+}
+
+/* ===============================
+   NOMBRE + META
+================================ */
+.name {
+  font-size: 46px;
+  letter-spacing: 3px;
+  font-weight: 800;
+  margin-top: 6px;
+  color: #fff;
+}
+
+.meta {
+  color: var(--sub);
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+/* ===============================
+   GRID DE 3 COLUMNAS
+================================ */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.col {
+  padding: 6px;
+}
+
+/* ===============================
+   TITULOS DE SECCIÓN
+================================ */
+.section-title {
+  color: var(--primary);
+  font-weight: 800;
+  font-size: 23px;
+  margin-bottom: 18px;
+  letter-spacing: 1px;
+}
+
+/* ===============================
+   COLUMNA IZQUIERDA
+================================ */
+.experience {
+  list-style: none;
+}
+.experience li {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 18px;
+  align-items: flex-start;
+}
+.experience p {
+  color: var(--text);
+  font-size: 14px;
+  margin-top: 2px;
+  max-width: 360px;
+}
+.year {
+  background: var(--primary);
+  color: #111827;
+  font-weight: 700;
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  min-width: 48px;
+  text-align: center;
+}
+
+/* AFICIONES */
+.hobbies {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  margin-bottom: 18px;
+}
+.hobbies li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+  font-size: 14px;
+  width: calc(50% - 8px);
+}
+.hobbies li.full {
+  width: 100%;
+}
+.material-icons {
+  font-size: 18px;
+  color: var(--primary);
+}
+
+/* IDIOMAS */
+.languages img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 12px;
+  border: 3px solid rgba(255, 255, 255, 0.03);
+}
+
+/* ===============================
+   COLUMNA CENTRAL
+================================ */
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: 12px;
+}
+
+.quote {
+  max-width: 520px;
+  margin-bottom: 20px;
+}
+.quote em {
+  font-style: normal;
+  color: #cbd5e1;
+  font-size: 19px;
+  line-height: 1.6;
+}
+.open-quote, .close-quote {
+  color: var(--primary);
+  font-size: 36px;
+  vertical-align: middle;
+  margin: 0 2px;
+}
+
+.quote {
+  position: relative;
+  top: -50px; /* sube visualmente el bloque */
+
+}
+
+
+
+/* ===============================
+   CENTRO: IMÁGENES DEL PORTAFOLIO
+================================ */
+/* ===============================
+   CENTRO: IMÁGENES DEL PORTAFOLIO (posiciones refinadas)
+================================ */
+/* ===============================
+   CENTRO: ANIMACIÓN DE ICONOS MEJORADA
+================================ */
+.center-art {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  height: 420px;
+  margin: 40px auto 0;
+  overflow: visible;
+  display: block;
+  z-index: 2;
+  perspective: 1000px; /* profundidad para efecto 3D */
+}
+
+.center-art img {
+  position: absolute;
+  object-fit: contain;
+  opacity: 0.9;
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.35));
+  will-change: transform, opacity;
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease;
+  animation: floaty 5s ease-in-out infinite;
+}
+
+/* ✨ Animación flotante */
+@keyframes floaty {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(2deg);
+  }
+}
+
+/* Animación de entrada al cargar */
+.center-art img {
+  animation-name: floaty, fadeIn;
+  animation-duration: 5s, 1s;
+  animation-delay: 0s, 0.2s;
+  animation-iteration-count: infinite, 1;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 0.9; transform: scale(1); }
+}
+
+/* Hover con profundidad */
+.center-art img:hover {
+  transform: scale(1.15) rotateY(10deg) rotateX(6deg);
+  opacity: 1;
+  z-index: 10;
+  transition: transform 0.4s ease, opacity 0.3s ease;
+}
+
+/* ===============================
+   POSICIONES PERSONALIZADAS
+================================ */
+.center-art img.audiculares {
+  top: 90px;
+  left: -5%;
+  width: 105px;
+  transform: rotate(-10deg);
+}
+
+.center-art img.celular {
+  top: 90px;
+  left: 80%;
+  width: 105px;
+  transform: rotate(8deg);
+}
+
+.center-art img.computadora {
+  top: 160px;
+  left: 30%;
+  width: 220px;
+  transform: translateX(-50%);
+  z-index: 3;
+}
+
+.center-art img.libro {
+  top: 270px;
+  left: -3%;
+  width: 105px;
+  transform: rotate(3deg);
+  z-index: 2;
+}
+
+.center-art img.mouse {
+  top: 270px;
+  left: 80%;
+  width: 105px;
+  transform: rotate(-6deg);
+  z-index: 3;
+}
+
+.center-art img.portafolio {
+  top: 20px;
+  left: 40%;
+  width: 105px;
+  transform: translateX(-50%) rotate(-2deg);
+  z-index: 4;
+}
+
+/* ===============================
+   VERSIÓN MÓVIL
+================================ */
+@media (max-width: 720px) {
+  .center-art {
+    max-width: 340px;
+    height: 280px;
+  }
+
+  .center-art img {
+    animation: floatyMobile 6s ease-in-out infinite;
+  }
+
+  @keyframes floatyMobile {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-6px) rotate(1deg); }
+  }
+
+  .center-art img.audiculares { top: 18px; left: 8%; width: 50px; }
+  .center-art img.celular     { top: 18px; left: 74%; width: 44px; }
+  .center-art img.computadora { top: 90px; width: 150px; }
+  .center-art img.libro       { top: 180px; left: 2%; width: 55px; }
+  .center-art img.mouse       { top: 140px; left: 80%; width: 50px; }
+  .center-art img.portafolio  { top: 70px; left: 50%; width: 70px; }
+}
+
+
+/* ===============================
+   EDUCACIÓN
+================================ */
+.education-list {
+  list-style: none;
+  margin-top: 12px;
+}
+.education-list li {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 14px;
+  align-items: flex-start;
+}
+.education-list strong {
+  color: var(--text);
+  display: block;
+}
+
+/* ===============================
+   COLUMNA DERECHA
+================================ */
+.contact {
+  list-style: none;
+}
+.contact li {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 12px;
+  color: var(--text);
+  font-size: 14px;
+}
+.contact .material-icons {
+  font-size: 20px;
+  color: var(--primary);
+}
+
+/* HABILIDADES (CÍRCULOS) */
+
+.skills {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 por fila */
+  gap: 10px 14px; /* espacio entre filas y columnas */
+  justify-items: center; /* centra cada skill */
+  margin-top: 18px;
+}
+
+.skill {
+  display: flex;
+  flex-direction: column; /* círculo arriba, texto abajo */
+  align-items: center;
+  text-align: center;
+  width: 100px;
+}
+
+.circle {
+  width: 86px;
+  height: 86px;
+  transform: rotate(-90deg);
+}
+
+.circle-bg {
+  fill: none;
+  stroke: #39434a;
+  stroke-width: 4;
+}
+
+.circle-fill {
+  fill: none;
+  stroke: #facc15; /* amarillo */
+  stroke-width: 4;
+  stroke-linecap: round;
+  transition: stroke-dasharray 0.6s ease;
+}
+
+/* Texto debajo del círculo */
+.skill-label {
+  margin-top: 0px; /* separación natural */
+  font-weight: bold;
+  font-size: 14px;
+  color: #fff;
+}
+
+/* Hover animado */
+.skill:hover .circle-fill {
+  stroke-dasharray: 100,100;
+}
+
+/* Responsive: 2 por fila */
+@media (max-width: 720px) {
+  .skills {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+@media (max-width: 1100px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .center {
+    order: 3;
+  }
+}
+
+@media (max-width: 720px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .name {
+    font-size: 26px;
+  }
+  .avatar-wrap {
+    width: 120px;
+    height: 120px;
+  }
+  .avatar {
+    width: 120px;
+    height: 120px;
+  }
+  .avatar-ring-left, .avatar-ring-right {
+    width: 120px;
+    height: 120px;
+  }
+  .section-title {
+    font-size: 16px;
+  }
+  .center-art {
+    max-width: 360px;
+    height: 260px;
+  }
+  .center-art img {
+    opacity: 1;
+  }
+
+  /* ✨ Animación flotante + efecto 3D */
+.center-art {
+  perspective: 1000px; /* agrega profundidad 3D sin alterar el layout */
+}
+
+.center-art img {
+  animation: floaty 5s ease-in-out infinite, fadeIn 1s ease forwards;
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease;
+}
+
+/* Flotación suave */
+@keyframes floaty {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(2deg);
+  }
+}
+
+/* Aparición suave */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 0.95;
+    transform: scale(1);
+  }
+}
+
+/* Hover con profundidad */
+.center-art img:hover {
+  transform: scale(1.12) rotateY(10deg) rotateX(5deg);
+  opacity: 1;
+  z-index: 10;
+}
+
+}
+
+
+.circle-bg {
+  fill: none;
+  stroke: #39434a;
+  stroke-width: 4;
+}
+
+.circle-fill {
+  fill: none;
+  stroke: #facc15; /* amarillo */
+  stroke-width: 4;
+  stroke-linecap: round;
+  transition: stroke-dasharray 0.6s ease;
+}
+
+.skill-label {
+  position: relative;
+  font-weight: bold;
+  font-size: 16px;
+  color: #fff;
+  z-index: 2;
+}
+
+/* Hover animado */
+.skill:hover .circle-fill {
+  stroke-dasharray: 100,100;
+}

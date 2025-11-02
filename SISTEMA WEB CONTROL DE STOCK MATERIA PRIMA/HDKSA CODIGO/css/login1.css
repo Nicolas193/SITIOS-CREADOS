@@ -1,0 +1,29 @@
+
+.imaglog{
+    border-radius: 50%;
+	margin-left: 15%;
+	padding: 20px;
+	width: 250px;
+}
+
+body {
+  background-image: url('../imagenes/fondologueo.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+
+.marcadeagua {
+   bottom: 0;
+   left: 0;
+   width: 100%;
+   background-color: #f2f2f2;
+   padding: 20px;
+   text-align: center;
+   font-size: 18px;
+   color: #333;
+   font-family: Arial, sans-serif;
+   font-weight: bold;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}

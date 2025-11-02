@@ -1,0 +1,340 @@
+/* Importamos el archivo de colores personalizado */
+@import url('colores.css');
+
+/* === BASE === */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  min-height: 100vh;
+  background: #000;
+}
+
+/* === ICONOS === */
+
+
+.menu-perfil {
+  width: 55px;
+  height: 55px;
+  margin-right: 10px;
+  vertical-align: middle;
+  background-color:#75767d ;
+}
+
+.menu-carpeta {
+  width: 33px;
+  height: 33px;
+}
+
+/* === NAVBAR VERTICAL === */
+.navbar {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+
+/* === USUARIO === */
+.user-container a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+  background-color: #000;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: background-color 0.3s ease;
+}
+
+.user-container a:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+.user-icon {
+  font-size: 18px;
+  margin-right: 8px;
+}
+
+.username {
+  font-weight: bold;
+  color: #fff;
+}
+
+.user-role {
+  font-size: 11px;
+  color: #ccc;
+}
+
+/* === MENÚ Y SECCIONES === */
+.menu-section p {
+  font-weight: bold;
+  font-size: 13px;
+  text-transform: uppercase;
+  margin: 10px 0 6px;
+  padding: 8px 10px;
+  cursor: pointer;
+  background-color: #75767d;
+  border-radius: 4px;
+  color: #fff;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.menu-section p:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+/* === SUBMENÚ === */
+.submenu {
+  display: none;
+  flex-direction: column;
+  margin-bottom: 10px;
+  background-color: #75767d;
+  border: 1px solid #333;
+  border-radius: 6px;
+  padding: 6px 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.submenu.show {
+  display: flex;
+}
+
+.submenu a {
+  padding: 8px 12px;
+  margin: 3px 0;
+  color: #fff;
+  text-decoration: none;
+  font-size: 13px;
+  border-radius: 4px;
+  background-color: #000;
+  transition: background-color 0.2s ease;
+}
+
+.submenu a:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+/* Pestaña seleccionada */
+.navbar a.highlight {
+  background-color: #333 !important;
+  color: #fff !important;
+  font-weight: bold;
+}
+
+/* === CERRAR SESIÓN === */
+#cerrar-sesion {
+  display: block;
+  padding: 10px;
+  color: #fff;
+  background-color: #a51b1b;
+  text-decoration: none;
+  margin: 30px 15px 10px;
+  text-align: center;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+#cerrar-sesion:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+/* === PERFIL DE USUARIO === */
+.user-profile {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  background-color: #000;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+  transition: background-color 0.3s ease;
+  margin-bottom: 10px;
+}
+
+.user-profile:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+.user-icon {
+  font-size: 22px;
+  margin-right: 10px;
+}
+
+.username {
+  font-weight: 600;
+  font-size: 14px;
+  color: #fff;
+}
+
+.user-role {
+  font-size: 12px;
+  color: #ccc;
+}
+
+/* === INPUT DE BÚSQUEDA === */
+#menu-search {
+  padding: 6px 8px;
+  font-size: 13px;
+  border: 1px solid #333;
+  border-radius: 4px;
+  outline: none;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+}
+
+#menu-search:focus {
+  border-color: #fff;
+  box-shadow: 0 0 5px #fff;
+}
+
+/* === RESALTADO DE BÚSQUEDA === */
+.submenu a.highlight-search {
+  background-color: #333 !important;
+  color: #fff !important;
+  font-weight: bold;
+}
+
+/* === SIDEBAR === */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 220px;
+  height: 100vh;
+  background-color: #000;
+  color: #fff;
+  overflow-y: auto;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  border-radius: 5px 0 0 5px;
+  transition: width 0.3s ease;
+  z-index: 1000;
+  border: 1px solid #333;
+}
+
+.sidebar.collapsed {
+  width: 0;
+  overflow: hidden;
+  padding: 0;
+}
+
+/* === BOTÓN TOGGLE === */
+.toggle-arrow {
+  position: fixed;
+  bottom: 10px;
+  left: 220px;
+  height: 40px;
+  width: 20px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 0 5px 5px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  z-index: 1101;
+  box-shadow: 0 1px 4px #333;
+  transition: left 0.3s ease;
+}
+
+.sidebar.collapsed + .toggle-arrow {
+  left: 0;
+}
+
+/* === BOTONES Y FORMULARIOS === */
+.btn-download-csv {
+  background-color: #000 !important;
+  box-shadow: 0 4px 8px #333 !important;
+  color: #fff !important;
+}
+
+input[type="text"], input[type="email"], select {
+  border: 2px solid #333 !important;
+}
+
+.boton-guardar {
+  background: #000 !important;
+  box-shadow: 0 9px 24px #333 !important;
+  color: #fff !important;
+}
+
+.avatar-circle {
+  background: linear-gradient(135deg, #000, #000) !important;
+}
+
+form button {
+  background: #000 !important;
+  color: #fff !important;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+input[type="datetime-local"]:focus,
+select:focus,
+textarea:focus {
+  border-color: #333 !important;
+  box-shadow: 0 0 8px #333 !important;
+}
+
+thead th {
+  background-color: #000 !important;
+  color: #fff !important;
+}
+
+.tema-opcion input[type="radio"] {
+  accent-color: #000 !important;
+}
+
+button:hover {
+  box-shadow: 0 6px 20px #333 !important;
+}
+
+h1.title {
+  color: #000 !important;
+}
+
+.btn-primary:hover,
+form.form-wrapper input[type="submit"]:hover,
+form[method="POST"] input[type="submit"]:hover,
+form[method="GET"] input[type="submit"]:hover,
+table.table input[type="submit"]:hover {
+  background: #333 !important;
+}
+
+.btn-update {
+  background: #000 !important;
+  box-shadow: 0 5px 15px #333 !important;
+  color: #fff !important;
+}
+
+.btn-gradient {
+  background: #000 !important;
+  color: #fff !important;
+}
+
+h2 { 
+  color: #000 !important;
+}
+
+.comentarios-section h3 {
+  color: #000 !important;
+}
+
+.menu-icon {
+  width: 18px;
+  vertical-align: middle;
+  margin-right: 5px;
+  background-color: #ffff !important;
+}

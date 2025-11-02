@@ -1,0 +1,456 @@
+.wrapper-mistareas {
+  padding-top: 10px;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 40px;
+  width: 100%;
+}
+
+.container-mistareas.form-container {
+  max-width: 900px;
+  width: 100%;
+  background: #eaf4ff;
+  border-radius: 12px;
+  padding: 20px 30px 30px;
+  box-shadow: 0 8px 24px rgba(0, 120, 215, 0.2);
+  max-height: 720px;
+  overflow-y: auto;
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Contenedores para filas, max 3 columnas */
+.form-row {
+  display: flex;
+  gap: 20px; /* espacio horizontal entre inputs */
+  margin-bottom: 30px; /* espacio vertical entre filas */
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+/* Cada input máximo 3 por fila */
+.form-row > .form-group {
+  flex: 1 1 calc(33.333% - 13.33px); /* 3 columnas con gap incluido */
+  display: flex;
+  flex-direction: column;
+  min-width: 180px; /* evita inputs demasiado pequeños */
+}
+
+input[type="datetime-local"] {
+  width: 100%;      /* ocupa todo el ancho del contenedor */
+  max-width: 250px; /* o el tamaño que te guste para que se vea bien */
+  box-sizing: border-box;
+}
+
+/* Input Legajo (lp) más chico, la mitad del ancho normal */
+.form-group.lp input[type="text"] {
+  max-width: 80px;
+}
+
+/* Labels */
+label {
+  font-weight: 600;
+  color: #0d1f44;
+  user-select: none;
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* Inputs y selects */
+input[type="text"],
+input[type="date"],
+input[type="datetime-local"],
+select,
+textarea {
+  padding: 8px 12px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1.8px solid #a8c6e9;
+  background: #f7fbff;
+  color: #0d1f44;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease;
+  font-weight: 500;
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Espacio extra para textarea si está sola en fila */
+.form-group.detalle,
+.form-group.observaciones,
+.form-group.listado_detalle_problematica,
+.form-group.respuesta {
+  flex: 1 1 100%;
+  margin-bottom: 30px;
+}
+
+/* Focus */
+input[type="text"]:focus,
+input[type="date"]:focus,
+input[type="datetime-local"]:focus,
+select:focus,
+textarea:focus {
+  border-color: #0078d7;
+  outline: none;
+  box-shadow: 0 0 8px #0078d7aa;
+}
+
+/* Botón */
+form button {
+  background: linear-gradient(135deg, #531f5d, #531f5d);
+  border: none;
+  color: white;
+  padding: 12px 32px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 120, 215, 0.4);
+  margin: 20px auto 0;
+  display: block;
+  user-select: none;
+}
+
+button:hover {
+  background: linear-gradient(135deg, #531f5d, #531f5d);
+  box-shadow: 0 6px 20px rgba(0, 120, 215, 0.6);
+}
+
+/* Mensajes éxito */
+.success-message {
+  background: #d4edda;
+  color: #155724;
+  border-radius: 8px;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: center;
+  border: 1.5px solid #c3e6cb;
+  box-shadow: 0 3px 12px rgba(69, 160, 89, 0.3);
+  opacity: 0;
+  transform: translateY(-15px);
+  animation: slideFadeIn 0.6s forwards;
+  animation-delay: 0.2s;
+}
+
+/* Placeholder */
+::placeholder {
+  color: #7ea6d8;
+  opacity: 1;
+  font-weight: 400;
+}
+
+/* Responsive para pantallas chicas */
+@media (max-width: 800px) {
+  .form-row > .form-group {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+
+  /* Para que lp no quede muy chico en móvil */
+  .form-group.lp input[type="text"] {
+    max-width: 100%;
+  }
+
+  input[type="date"],
+  input[type="datetime-local"] {
+    max-width: 100%;
+  }
+}
+
+/* Estilo general para la sección de nómina */
+.importancion {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 6px 20px rgba(0, 120, 215, 0.15);
+  margin-top: 40px;
+  text-align: center;
+}
+
+.importancion h1 {
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+  color: #0d1f44;
+}
+
+/* Formulario de carga */
+#importarForm,
+#importarForm input,
+#importarForm button,
+#importarForm label {
+  display: block;
+  margin: 0 auto;
+}
+
+#importarForm label {
+  font-weight: 600;
+  color: #0d1f44;
+  margin-bottom: 10px;
+}
+
+#importarForm input[type="file"] {
+  padding: 10px;
+  border: 2px dashed #0078d7;
+  border-radius: 12px;
+  background-color: #f0f8ff;
+  transition: border-color 0.3s ease;
+  cursor: pointer;
+}
+
+#importarForm input[type="file"]:hover {
+  border-color: #005fa3;
+}
+
+#importarForm button {
+  margin-top: 20px;
+  background-color: #0078d7;
+  color: #fff;
+  padding: 10px 24px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#importarForm button:hover {
+  background-color: #005fa3;
+}
+
+/* Estilo para progreso de importación */
+#progresoImportacion {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+  border-radius: 8px;
+  display: none;
+  font-weight: 600;
+}
+
+/* Estilo para mensaje final */
+#mensaje {
+  margin-top: 20px;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+#mensaje.error {
+  color: #b30000;
+}
+
+#mensaje.exito {
+  color: #146c43;
+}
+
+/* Tabla */
+.importanciontablero {
+  margin-top: 40px;
+}
+
+.importanciontablero table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+}
+
+.importanciontablero th {
+  background-color: #0078d7;
+  color: #fff;
+  padding: 12px;
+  text-align: left;
+}
+
+.importanciontablero td {
+  padding: 10px;
+  border-bottom: 1px solid #e1e1e1;
+}
+
+.importanciontablero tr:nth-child(even) {
+  background-color: #f4f9ff;
+}
+
+/* Responsive tabla */
+@media screen and (max-width: 768px) {
+  .importanciontablero table,
+  .importanciontablero thead,
+  .importanciontablero tbody,
+  .importanciontablero th,
+  .importanciontablero td,
+  .importanciontablero tr {
+    display: block;
+  }
+
+  .importanciontablero thead tr {
+    display: none;
+  }
+
+  .importanciontablero td {
+    position: relative;
+    padding-left: 50%;
+    border: none;
+    border-bottom: 1px solid #e1e1e1;
+  }
+
+  .importanciontablero td::before {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    font-weight: bold;
+    color: #0078d7;
+  }
+
+  .importanciontablero td:nth-of-type(1)::before { content: "LP"; }
+  .importanciontablero td:nth-of-type(2)::before { content: "Grado"; }
+  .importanciontablero td:nth-of-type(3)::before { content: "Apellido"; }
+  .importanciontablero td:nth-of-type(4)::before { content: "Nombre"; }
+  .importanciontablero td:nth-of-type(5)::before { content: "DNI"; }
+  .importanciontablero td:nth-of-type(6)::before { content: "Correo"; }
+  .importanciontablero td:nth-of-type(7)::before { content: "Tel. Asignado"; }
+  .importanciontablero td:nth-of-type(8)::before { content: "Dependencia"; }
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+  font-size: 0.95rem;
+  margin-top: 20px;
+}
+
+thead th {
+  background-color: #0078d7;
+  color: white;
+  padding: 12px 15px;
+  text-align: left;
+  font-weight: 600;
+  user-select: none;
+}
+
+tbody td {
+  padding: 10px 15px;
+  border-bottom: 1px solid #e1e1e1;
+  color: #0d1f44;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f4f9ff;
+}
+
+tbody tr:hover {
+  background-color: #d9eaff;
+  cursor: pointer;
+}
+
+a {
+  color: #0078d7;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+nav {
+  margin-bottom: 20px;
+}
+
+.tabla-badge {
+  display: inline-block;
+  background-color: #2ecc71; /* verde claro */
+  color: white;
+  padding: 5px 12px;
+  border-radius: 20px;  /* píldora */
+  margin-right: 5px;
+  font-weight: 600;
+  text-decoration: none;
+  user-select: none;
+  transition: background-color 0.3s ease;
+}
+
+.tabla-badge:hover {
+  background-color: #27ae60;
+}
+
+/* Animaciones */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+  div.dataTables_filter {
+    text-align: center !important;
+    float: none !important;
+  }
+  div.dataTables_filter label {
+    font-weight: bold;
+  }
+  div.dataTables_filter input {
+    width: 250px;
+    display: inline-block;
+    margin-left: 8px;
+  }
+
+  .btn-download-csv {
+  display: inline-block;
+  background-color: #28a745; /* Verde éxito */
+  color: white;
+  padding: 10px 18px;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  border: none;
+}
+
+.btn-download-csv:hover {
+  background-color: #218838; /* Verde más oscuro */
+  transform: scale(1.03);
+  cursor: pointer;
+}
+
+.btn-download-csv i {
+  margin-right: 8px;
+}
+
+.csv-button-container {
+  text-align: center;
+  margin: 20px 0;
+}

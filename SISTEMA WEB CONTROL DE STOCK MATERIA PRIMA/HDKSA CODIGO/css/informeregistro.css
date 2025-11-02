@@ -1,0 +1,203 @@
+.col-mid-6{
+  position: absolute; 
+  height: 120px !important;
+  width: 100%;
+  text-align: center;
+}
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1.2em;
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+    border-inline: 3px solid #ddd !important;
+  }
+  
+  th {
+    background-color: #ddd !important;
+     border: solid black 1px !important;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+  }
+  
+  .btn-danger {
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+  }
+
+  .btn-actualizar {
+  background-color: #3399ff;
+  color: #fff;
+  padding: 5px 11px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.btn-actualizar:hover {
+  background-color: #66b3ff;
+}
+  form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+label {
+  margin: 0 10px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+input[type="text"],
+select {
+  padding: 5px 10px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  margin: 5px;
+  width: 200px;
+}
+
+input[type="date"],
+input[type="time"] {
+  padding: 5px 10px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  margin: 5px;
+  width: 200px;
+}
+
+input[type="submit"] {
+  padding: 5px 20px;
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+
+.informacion {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  margin: 10px 0;
+  text-align: center;
+  border: 2px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+}
+    
+  .btn-actualizar {
+  background-color: #3399ff !important;
+  color: #fff !important;
+  padding: 5px 11px !important;
+  border-radius: 5px !important;
+  text-decoration: none !important;
+}
+
+.btn-actualizar:hover {
+  background-color: #66b3ff !important;
+}
+
+
+
+  
+  @media (max-width: 767px) {
+    table, thead, tbody, th, td, tr {
+      display: block;
+    }
+    
+    thead tr {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+    
+    tr {
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+    }
+    
+    td {
+      border: none;
+      border-bottom: 1px solid #ccc;
+      position: relative;
+      padding-left: 50%;
+    }
+    
+    td:before {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      width: 45%;
+      padding-right: 10px;
+      white-space: nowrap;
+    }
+    
+    td:nth-of-type(1):before {
+      content: "Tanque";
+    }
+    
+    td:nth-of-type(2):before {
+      content: "Medicion";
+    }
+    
+    td:nth-of-type(3):before {
+      content: "Fecha";
+    }
+    
+    td:nth-of-type(4):before {
+      content: "responsable";
+    }
+    
+    td:nth-of-type(5):before {
+      content: "motivo";
+    }
+
+        td:nth-of-type(6):before {
+      content: "motivo fason";
+    }
+    
+    td:nth-of-type(7):before {
+      content: "opciones";
+    }
+  
+
+      th, td {
+    padding: 10px;
+    text-align: right;
+    border: 1px solid #ddd;
+  }
+  
+}

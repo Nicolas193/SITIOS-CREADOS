@@ -1,0 +1,44 @@
+.portada{
+   background-color: #2d6b48;
+   text-align: center;
+   margin: auto;
+   width: 60%;
+   height: 900px;
+}
+
+.logo{
+   padding: 60px 0 0 0;
+}
+
+.logo-img{
+   margin: 30px;
+   height: 200px;
+   box-shadow:0px 0px 2px 2px #338b58;
+}
+
+.titulo{
+   padding: 30px 0 0 0;
+   color: #ffff;
+   font-size: 30px;
+   text-shadow: 0 0 2px #000;
+}
+
+
+p{
+   font-size: 20px;
+   margin: 50px;
+   font-family: Arial;
+   background-color: #fff;
+    border-radius: 5px;
+
+}
+
+@media only screen and (max-width: 1000px){
+
+.portada{
+   width: 100%;
+}
+
+
+
+}

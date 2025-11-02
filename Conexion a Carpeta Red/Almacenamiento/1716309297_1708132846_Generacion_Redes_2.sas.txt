@@ -1,0 +1,167 @@
+/* Este programa asigna el identificador de red para cada par Legajo Expediente 
+**********************************************************************************/
+
+
+/* TABLA DE EJEMPLO */ 
+*title "TABLA DE EJEMPLO QUE SE ASEMEJA A LA BASE SIGAD";
+
+DATA work.Ejemplo;
+    INPUT Legajo $ Exp $ ;
+    DATALINES;
+1111 Exp1  
+7777 Exp1
+2222 Exp1
+3333 Exp1
+2222 Exp2 
+4444 Exp2
+9999 Exp3
+4444 Exp3
+4444 Exp4
+9999 Exp4
+7777 Exp5
+5555 Exp5
+1000 Exp6
+1001 Exp6 
+;
+RUN;
+
+/* Crea Data Set de Salida */
+data RedesTotales;
+set ejemplo;
+idred = 0;
+stop;
+run;
+
+%global HayRegistros cantLegajos;
+
+/* Obtiene los legajos diferentes, la cantidad total de legajos y asigna orden para usar en el bucle */
+proc sql;
+create table legajos_dist as 
+select distinct legajo
+	from ejemplo;
+quit;
+
+data consultas (keep=norden Legajo);
+set legajos_dist;
+norden = _N_;
+run;
+
+/* Obtiene la cantidad total de legajos para el limite superior del do */
+data _null_;
+	conviokw=open("consultas");
+	nobs=attrn(conviokw,'nobs');
+	call symputx ("cantLegajos",nobs);
+	conviokw=close(conviokw);
+run;
+
+%put  cantLegajos=  &cantLegajos.; 
+
+/* Busca los legajos que comparten expedientes, esta macro es invocada por la macro Bucle */ 
+%macro buscaDatos;
+	
+	%let HayRegistros=1;
+	%put HayRegistros= &HayRegistros.;
+
+	%do %while(&HayRegistros.>0);								/* se repite hasta que no encuentra más casos de esa red */
+		
+		proc sql;
+		Create table exped1 as									/* los expedientes que no están en datos, cuando el legajo si está */
+		select distinct exp, legajo from ejemplo e				
+		where e.Legajo in (select d.legajo from datos d)  
+		and e.exp not in  (select d2.exp from datos d2)
+		and e.Legajo ne "&legajoActual.";						/*los del legajo actual ya los tiene en datos, por la macro bucle */
+
+		select count(1) into :cant1 from exped1;
+		quit;
+		
+		proc sql;
+		Create table leg1 as									/* los legajos q están en los expedientes del select anterior*/	
+		select distinct exp, legajo from ejemplo
+		where exp in      (select exp from exped1 )
+		and legajo not in (select legajo from datos);
+		
+		select count(1) into :cant2 from leg1;
+		quit;
+		
+		%let HayRegistros = %eval(&cant1. + &cant2.);
+	    %put HayRegistros=  &HayRegistros.; 
+	
+		%if (HayRegistros>0) %then %do;							/* si encontró los agrega a datos y continua buscando */
+			proc append data=exped1 base=datos;
+			run;
+			proc append data=leg1 base=datos;
+			run;
+		%end;
+	
+	%end;
+	
+%mend buscaDatos;
+
+
+%Macro Bucle();
+	
+	%do i=1 %to &cantLegajos.;						/* generar el id de red*/
+	
+		proc sql noprint;
+		select Legajo into :legajoActual
+		from consultas
+		where norden=&i.;
+		quit;
+				
+		%put LegajoActual= &legajoActual.;
+		
+		proc sql;
+		Create table datos_exp as					/* Paso 1 todos los expedientes de ese legajo, si el legajo aún no está en una red*/
+		select distinct Exp, legajo from ejemplo e
+		where e.Legajo = "&legajoActual."
+		and   e.Legajo not in (select distinct r.legajo from RedesTotales r);
+		
+		select count(1) into :nuevaRed from datos_exp;
+		quit;
+		
+		%if (:nuevaRed > 0) %then %do;					/* el legajo actual aún no está en ninguna red */
+				
+			proc sql;
+			Create table datos as
+			select distinct Exp, legajo from ejemplo	/* Paso2 todos los legajos de los expedientes de Paso 1 */
+			where exp in (select exp from datos_exp)        
+			and legajo ne "&legajoActual.";
+			quit;
+			
+			proc append base=Datos data=datos_exp force;
+			quit;
+			
+			%buscaDatos;								/* busca otros expedientes de los legajos encontrados en Paso 2, */
+														/* busca los legajos de esos expediente e itera hasta que no encuentra más */
+			proc sql;
+			insert into RedesTotales 					/* DS con el nro de red de cada par Legajo Exp*/
+			select legajo, exp, &i.
+			from datos;
+			quit;
+		%end; 
+		
+	%end;
+
+%mend bucle;
+
+%bucle();
+
+
+/* Asignación de librerías */
+
+cas ;
+libname Public cas caslib=Public;
+
+
+/*Subir datos al CAS*/
+proc casutil;
+	DROPTABLE CASDATA="RedesTotales" INCASLIB="PUBLIC" QUIET;
+quit;
+
+proc casutil outcaslib="PUBLIC" ;
+load data=work.RedesTotales casout='RedesTotales' promote;
+quit;
+
+proc casutil incaslib="PUBLIC" outcaslib="PUBLIC";
+    save casdata='RedesTotales' replace;		
+

@@ -1,0 +1,32 @@
+<?php
+
+//llamaomos campos
+$name = $_POST['introducir_nombre'];
+$mail = $_POST['introducir_email'];
+$phone = $_POST['introducir_telefono'];
+$introducir_website = $_POST['introducir_website'];
+$introducir_asunto = $_POST['introducir_asunto'];
+$message = $_POST['introducir_mensaje'];
+
+$header ='From:' .$introducir_email . " \r\n";
+$header .="X-Mailer: PHP/" . phpversion() . " \r\n";
+$header .="Mime-Version: 1.0" " \r\n";
+$header .="Content-Type: text/plain";
+
+$message = "Este mensaje fue enviado por: " . $name . " \r\n";
+$message .= "Su e-mail es: " . $mail . " \r\n";
+$message .= "Telefono de contacto: " . $phone . " \r\n";
+$message .= "Mensaje: " . $_POST['message'] . " \r\n";
+$message .= "Enviado el:" .date('d/m/Y', time());
+
+
+//datos para el correo
+$para = "maciel.nico2019@gmail.com";
+$asunto = "contacto desde nuestra web";
+
+
+mail($para, $asunto, utf8_decode($message), $header);
+
+header("Location:HDK.SA 2.0.html")
+
+?>

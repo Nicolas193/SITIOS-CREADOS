@@ -1,0 +1,208 @@
+
+    
+button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+    .pdf-btn {
+  background-color: #1c6ea4;
+  border: none;
+  color: white;
+  padding: 10px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.imagenpdf {
+margin-left: -5px;
+  width: 35px;
+  height: 50px;
+}
+
+
+  .btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+  }
+  
+  .btn-danger {
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+  }
+
+  .btn-actualizar {
+  background-color: #3399ff;
+  color: #fff;
+  padding: 5px 11px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.btn-actualizar:hover {
+  background-color: #66b3ff;
+}
+  form {
+    text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+label {
+  margin: 0 10px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+input[type="text"],
+select {
+  padding: 5px 10px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  margin: 5px;
+  width: 200px;
+}
+
+input[type="date"],
+input[type="time"] {
+  padding: 5px 10px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  margin: 5px;
+  width: 200px;
+}
+
+input[type="submit"] {
+  padding: 5px 20px;
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+
+.informacion {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+  margin: 10px 0;
+  text-align: center;
+  border: 2px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+}
+  
+  @media (max-width: 767px) {
+    table, thead, tbody, th, td, tr {
+      display: block;
+    }
+    
+    thead tr {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+    
+    tr {
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+    }
+    
+    td {
+      border: none;
+      border-bottom: 1px solid #ccc;
+      position: relative;
+      padding-left: 50%;
+    }
+    
+    td:before {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      width: 45%;
+      padding-right: 10px;
+      white-space: nowrap;
+    }
+
+ td:nth-of-type(1):before {
+  text-align: left;
+      content: "Tanque";
+    }
+    
+    td:nth-of-type(2):before {  text-align: left;
+      content: "Medicion";
+    }
+    
+    td:nth-of-type(3):before {  text-align: left;
+      content: "Fecha";
+    }
+    
+    td:nth-of-type(4):before {  text-align: left;
+      content: "responsable";
+    }
+    
+    td:nth-of-type(5):before {  text-align: left;
+      content: "Stock";
+    }
+    
+ 
+    td:nth-of-type(6):before {  text-align: left;
+      content: "Motivo";
+    }
+
+    td:nth-of-type(7):before {  text-align: left;
+      content: "Fason";
+    }
+
+
+      th, td {
+    padding: 10px;
+    text-align: right;
+    border: 1px solid #ddd;
+  }
+
+#descargas {
+height: 350px !important;
+background-color: #fff !important;
+z-index: 1000 !important;
+}
+
+  }

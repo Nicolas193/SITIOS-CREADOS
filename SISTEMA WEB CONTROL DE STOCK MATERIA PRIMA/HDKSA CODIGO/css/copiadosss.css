@@ -1,0 +1,36 @@
+  
+body{
+  background-color: #000;
+}
+  #menu {
+  background-color: #ffff;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  position: relative;
+}
+
+#menu a {
+  color: #000;
+  text-decoration: none;
+  font-size: 20px;
+  margin: 0 10px;
+}
+
+
+
+.imagencalculadora {
+  width: 45px;
+  height: 45px;
+}
+
+@media only screen and (max-width: 768px) {
+  #menu a {
+    font-size: 16px;
+  }
+}
+
+.reponsable{
+ 
+ width: 200px !important;
+}

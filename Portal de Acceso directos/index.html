@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html class="wide" lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTCEPCDAD</title>
+    <link rel="icon" href="images/LogoBA-accesos.png" type="image/x-icon">
+
+    <!-- Fuentes y CSS -->
+    <link href="htt,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/estilochat.css">
+    <link rel="stylesheet" href="css/estilowsp.css">
+    <link rel="stylesheet" href="htt.15.4/css/all.min.css">
+</head>
+
+<body>
+
+  <!-- Loader -->
+<div id="loader">
+    <div class="spinner"></div>
+</div>
+
+<div id="whatsappButton">
+    <a href="httP1" target="_blank">
+        <img src="images/whatsapp.png" alt="WhatsApp">
+        <span class="tooltip">
+            Chat Asistente Virtual de la Oficina de Transparencia y Control Externo de la Policía de Ciudad
+        </span>
+    </a>
+</div>
+
+    <button id="toggleChat">Abrir Chatbot</button>
+    <div id="chatBox" style="font-size: 12px;">
+        <div id="chatHeader">
+            <h2>ChatBot</h2>
+            <button id="closeChat">Cerrar</button>
+        </div>
+        <div id="chatContent">
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-logo">
+            <a href="./"><img src="images/logos control de transparencia2.png" alt="OTCE Logo"></a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="https://otcepr/">Inicio</a></li>
+            <li><a href="#" id="nav-about-us">Sobre Nosotros</a></li>
+            <li><a href="#" id="nav-rrhh">RRHH</a></li>
+            <li><a href="#" id="nav-paginas">Páginas Relacionadas</a></li>
+            <li><a href="#" id="nav-contacto">Contacto</a></li>
+
+        </ul>
+        <div class="nav-toggle"><span></span><span></span><span></span></div>
+    </nav>
+
+<!-- Hero / Banner con imágenes de fondo -->
+<header class="header-hero">
+    <div class="hero-slider">
+        <img src="images/fondopolicia.jpg" alt="Imagen 1" class="slide active">
+        <img src="images/fondopolicia2.jpg" alt="Imagen 2" class="slide">
+        <img src="images/fondopolicia3.jpg" alt="Imagen 3" class="slide">
+    </div>
+
+    <div class="hero-content">
+      <br>
+        <h1 style="font-size: 50px">BIENVENIDO AL PORTAL DE LA OFICINA</h1>
+        <p>Acceso directo a todas las funciones de OTCEPCDAD</p>
+
+        <div class="hero-buttons">
+            <button class="btn-accesos" onclick="scrollToBuscador()">Accesos Directos</button>
+            <button class="btn-tareas" onclick="window.open('https://otceges.ar/', '_blank')">Gestor de Tareas</button>
+        </div>
+    </div>
+
+    <div style="width:100%;">
+        <img src="images/otce_gerencias.png" alt="Gerencias OTCE"
+             style="width:100%; max-height:350px; object-fit:cover;">
+    </div>
+</header>
+
+<div class="main-container">
+
+    <!-- Contenedor de accesos directos con buscador y reloj -->
+<div class="cont-buscador" id="buscadorAccesos">
+    <div class="cont-buscador-busc">
+        <i class="fas fa-search"></i>
+        <input type="text" name="buscador" id="buscador" placeholder="Buscar Acceso Directo...">
+    </div>
+    <div class="clock">
+        <div id="time"></div>
+        <div id="date"></div>
+    </div>
+</div>
+
+
+    <ul class="nav nav-tabs" id="listaArticulos">
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" href="htt.ar/" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Boletín oficial">
+                <img src="images/logoba.png" alt="" width="180" height="180" />
+                <span>BOLETIN OFICIAL</span>
+            </a>
+            <div class="descip-item">
+                <a style="font-size: 15px; color: #ffff;">
+                    <b>En el Boletín oficial se publican las normas sancionadas por el Poder Ejecutivo, el Poder Legislativo, el Poder Judicial, los Órganos de Control, el Banco Ciudad, así como comunicados y avisos, edictos particulares y oficios judiciales.</b>
+                </a>
+            </div>
+        </li>
+
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" href="httpsaires.gob.ar" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Posicionamiento de las cámaras del Centro de Monitoreo Urbano">
+                <img src="images/geolocalizacion.jpg" alt="" width="180" height="180" />
+                <span>USIG</span>
+            </a>
+            <div class="descip-item">
+                <a style="font-size: 15px; color: #ffff;">
+                    <b>USIG: Esta plataforma avanzada permite un control efectivo y monitoreo en tiempo real mediante geolocalización precisa de incidentes y eventos en la ciudad...</b>
+                </a>
+            </div>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link" href="#" id="nav-carpeta" title="Intranet Policia de la Ciudad">
+            <img src="images/intranetotcepcdad.png" alt="" width="180" height="180"/>
+            <span>CARPETA COMPARTIDA OTCEPCDAD</span>
+          </a>
+          <div class="descip-item">
+            <p style="font-size: 15px; color: #ffff;">
+              <strong>Puedes acceder a la intranet desde la VPN o desde tu computadora de la oficina. Desde la oficina, solo debes ingresar la URL en la barra de búsqueda de tu navegador. Desde una computadora personal, es necesario estar conectado a la VPN. Asegúrate de estar correctamente logueado en la VPN antes de intentar acceder a la intranet.</strong>
+            </p>
+          </div>
+        </li>
+         <li class="nav-item " role="presentation">
+                      <a class="nav-link" href="httda/" data-toggle="" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Declaraciones juradas del personal policial">
+                        <img src="images/DDJJ.jpg" alt="" width="180" height="180"/>
+                        <span>DDJJ</span>
+                      </a>
+                      <div class="descip-item">
+                              <a style="font-size: 15px; color: #ffff;">
+                                  <b>Las declaraciones juradas del personal policial son documentos legales que contienen afirmaciones escritas y juramentadas hechas por los miembros de las fuerzas de seguridad.</b>
+                              </a>
+                      </div>
+                    </li>
+                    <li class="nav-item " role="presentation">
+                      <a class="nav-link" href="htt/index.php?reparticiones=1525&menu_id=5866" data-toggle="" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Guía funcionarios GCABA">
+                        <img src="images/funcionarios.jpg" alt="" width="180" height="180"/>
+                        <span style="font-size: 18px">GUIA FUNCIONARIOS</span>
+                      </a>
+                      <div class="descip-item">
+                              <a style="font-size: 15px; color: #ffff;">
+                                  <b>Podras obtener información sobre funcionarios y sus reparticiones en el Ministerio de Seguridad u otros ministerios</b>
+                              </a>
+                      </div>
+                    </li>
+                    <li class="nav-item " role="presentation">
+                      <a class="nav-link" href="https:r/" data-toggle="" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Guía funcionarios GCABA">
+                        <img src="images/bada.jpg" alt="" width="180" height="180"/>
+                        <span style="font-size: 18px">GESTOR DE TAREAS OTCEPCDAD</span>
+                      </a>
+                      <div class="descip-item">
+                              <a style="font-size: 15px; color: #ffff;">
+                                  <b>Gestioná y administrá tus tareas y proyectos junto a tu equipo de forma segura. Sistema interno de la Oficina de Transparencia y Control Externo de la Policía de la Ciudad.</b>
+                              </a>
+                      </div>
+                    </li>
+                    <li class="nav-item " role="presentation">
+                      <a class="nav-link" href="https://intrar/" data-toggle="" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Intranet Policia de la Ciudad">
+                        <img src="images/policia-de-la-ciudad-escudo.jpg" alt="" width="180" height="180"/>
+                        <span>INTRANET POLICIA</span>
+                      </a>
+                       <div class="descip-item">
+                              <a style="font-size: 15px; color: #ffff;">
+                                  <b>Nos permite compartir información entre las distintas dependencias policiales y de como están estructuradas cada una de ellas.</b>
+                              </a>
+                      </div>
+                    </li>
+                    <li class="nav-item " role="presentation">
+                      <a class="nav-link" href="htttiva" data-toggle="" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Normas GCABA">
+                        <img src="images/normativa2.jpg" alt="" width="180" height="180"/>
+                          <span>NORMATIVA</span>
+                      </a>
+                     <div class="descip-item">
+                              <a style="font-size: 15px; color: #ffff;">
+                                  <b>Boletin oficial donde se publican las normas sancionadas por el poder ejecutivo, legislativo y judicial.</b>
+                              </a>
+                      </div>
+                   </li>
+                   <li class="nav-item " role="presentation">
+                      <a class="nav-link" href="htj3cOE2w_ZlJWGO2o/edit#gid=0" data-toggle="" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Normas GCABA">
+                        <img src="images/sheets.png" alt="" width="180" height="180"/>
+                          <span>MATRIZ MEDIOS (GOCI)</span>
+                      </a>
+                     <div class="descip-item">
+                              <a style="font-size: 15px; color: #ffff;">
+                                  <b style="color:·531f5d;">FC-OTCE-06-161-01- MATRIZ MEDIOS 2024: <br/></b>
+                                  <b>Registrar aquella información o dato nuevo durante el año 2023 que involucre a personal de la Policía de la Ciudad en situaciones de mal desempeño policial, con el objeto de analizarlo para el inicio de posibles sanciones disciplinarias.</b>
+                              </a>
+                      </div>
+                   </li>
+                   <li class="nav-item " role="presentation">
+                      <a class="nav-link" href="htria.php" data-toggle="" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Ordenes del día Policia de la Ciudad">
+                        <img src="images/orden(1).jpg" alt="" width="180" height="180"/>
+                        <span>ORDENES DEL DIA</span>
+                      </a>
+                       <div class="descip-item">
+                              <a style="font-size: 15px; color: #ffff;">
+                                  <b>Las órdenes del día en la Policía de la Ciudad son documentos que detallan la lista de actividades, tareas o instrucciones que deben llevar a cabo los agentes y personal policial en un período de tiempo determinado</b>
+                              </a>
+                      </div>
+                    </li>
+                     <li class="nav-item " role="presentation">
+                      <a class="nav-link" href="http/mail/" data-toggle="" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Ordenes del día Policia de la Ciudad">
+                        <img src="images/outlook.png" alt="" width="180" height="180"/>
+                        <span>OUTLOOK</span>
+                      </a>
+                       <div class="descip-item">
+                              <a style="font-size: 15px; color: #ffff;">
+                                  <b>Microsoft Outlook es un programa informático gestor de correo electrónico desarrollado por Microsoft, disponible como parte de la suite Microsoft Office.</b>
+                              </a>
+                      </div>
+                    </li>
+                    <li class="nav-item " role="presentation">
+                      <a class="nav-link" href="httigrama/" data-toggle="" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Organigrama GCABA">
+                        <img src="images/organigrama.jpg" alt="" width="180" height="180"/>
+                        <span style="font-size: 19px">ORGANIGRAMA GCABA</span>
+                      </a>
+                      <div class="descip-item">
+                              <a style="font-size: 15px; color: #ffff;">
+                                  <b>representación la gráfica de la estructura de la organización, que incluye las estructuras departamentales, las personas que las dirigen y relaciones jerárquicas</b>
+                              </a>
+                      </div>
+                    </li>
+                 
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" href="#" id="nav-sadeportal" title="Sistema generador de comunicaciones, documentos oficiales y expedientes">
+              <img src="images/SADE - iso-logo2.jpg" alt="SADE" width="180" height="180"/>
+              <span>SADE / PORTAL</span>
+            </a>
+            <div class="descip-item">
+              <p style="font-size: 15px; color: #ffff;">
+                <strong>Sistema de administración de documentos electrónicos: Pase de Expedientes. Digitaliza todos los trámites y comunicaciones del Poder Ejecutivo del Gobierno de la Ciudad de Buenos Aires.</strong>
+              </p>
+            </div>
+          </li>
+ <li class="nav-item" role="presentation">
+                      <a class="nav-link " href="https://sinIn" data-toggle="" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Sistema de registro interno de actuaciones administrativas">
+                        <img src="images/policia_vector.jpg" alt="" width="180" height="180"/>
+                        <span>SIGAD</span>
+                      </a>
+                       <div class="descip-item">
+                              <a style="font-size: 15px; color: #ffff;">
+                                  <b>Sistema de registro interno de actuaciones administrativas</b>
+                              </a>
+                      </div>
+                    </li>
+                    <li class="nav-item " role="presentation">
+                      <a class="nav-link" href="httno/" data-toggle="" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Estado de fuerza y  rol de funciones del personal por jornada">
+                        <img src="images/sistema1.jpg" alt="" width="180" height="180"/>
+                        <span>SIGENO</span>
+                      </a>
+                      <div class="descip-item">
+                              <a style="font-size: 15px; color: #ffff;">
+                                  <b>Permite a las diferentes áreas de la policía de la ciudad llevar un registro del personal.</b>
+                              </a>
+                      </div>
+                    </li>
+                    <li class="nav-item " role="presentation">
+                      <a class="nav-link" href="https:/on/" data-toggle="" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Sistema de notificaciones electrónicas">
+                        <img src="images/notificaciones.jpg" alt="" width="180" height="180"/>
+                        <span >SINE</span>
+                      </a>
+                       <div class="descip-item">
+                              <a style="font-size: 15px; color: #ffff;">
+                                  <b>sistema de notificaciones electrónicas es una plataforma digital que permite la entrega eficiente y segura de comunicaciones y avisos a través de medios electrónicos.</b>
+                              </a>
+                      </div>
+                    </li>
+                    <li class="nav-item " role="presentation">
+                      <a class="nav-link" href="https://pespx" data-toggle="" target="_blank" data-toggle="tooltip" data-placement="bottom" title="">
+                        <img src="images/ascenso.jpg" alt="" width="180" height="180"/>
+                        <span>SIPAP</span>
+                      </a>
+                       <div class="descip-item">
+                              <a style="font-size: 15px; color: #ffff;">
+                                  <b> Este sistema está diseñado para gestionar de manera eficiente y transparente el desarrollo y promoción de los miembros de la fuerza policial, asegurando que los oficiales más capacitados avancen en sus carreras de manera justa y basada en méritos.</b>
+                              </a>
+                      </div>
+                    </li>
+                    <li class="nav-item " role="presentation">
+                      <a class="nav-link" href="http://onal/" data-toggle="" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Reporte con los datos personales y filiatorios de la Policía de la Ciudad">
+                        <img src="images/personal.jpg" alt="" width="180" height="180"/>
+                        <span>SIRHU</span>
+                      </a>
+                       <div class="descip-item">
+                              <a style="font-size: 15px; color: #ffff;">
+                                  <b>El reporte proporciona información detallada sobre los datos personales y de identificación de los miembros de la Policía de la Ciudad. Permite la detección y verificación precisa del cumplimiento de los deberes por parte de los agentes.</b>
+                              </a>
+                      </div>
+                    </li>
+                    <li class="nav-item " role="presentation">
+                      <a class="nav-link" href="https://sogin" data-toggle="" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Reporte con los datos personales y filiatorios de la Policía de la Ciudad">
+                        <img src="images/SISEP.jpg" alt="" width="180" height="180"/>
+                        <span>SISEP</span>
+                      </a>
+                        <div class="descip-item">
+                              <a style="font-size: 15px; color: #ffff;">
+                                  <b>Reporte con los datos personales y filiatorios de la Policía de la Ciudad. Capacidad de rastrear y analizar sus movimientos con precisión.</b>
+                              </a>
+                      </div>
+                    </li>
+                    <li class="nav-item " role="presentation">
+                      <a class="nav-link" href="htmm/" data-toggle="" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Historial médico de los efectivos">
+                        <img src="images/SMLAM.jpg" alt="" width="180" height="180"/>
+                        <span>SMLAM</span>
+                      </a>
+                      <div class="descip-item">
+                              <a style="font-size: 15px; color: #ffff;">
+                                  <b>El historial médico de los efectivos de la policía es un registro completo y detallado de la información médica relevante de los miembros de las fuerzas policiales. Este historial es cruciales para garantizar el bienestar y la capacidad operativa de los agentes en el cumplimiento de sus deberes. </b>
+                              </a>
+                      </div>
+                    </li>
+                    <li class="nav-item " role="presentation">
+                      <a class="nav-link" href="htive/" data-toggle="" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Entorno de productivo de SaS Studio">
+                        <img src="images/sasproductivo.png" alt="" width="180" height="180"/>
+                        <span>SAS Prod</span>
+                      </a>
+                         <div class="descip-item">
+                              <a style="font-size: 15px; color: #ffff;">
+                                  <b>Descubre un entorno altamente productivo diseñado para el análisis de datos y la eficiente gestión de información disponible. Importante destacar que esta plataforma está enfocada exclusivamente en la lectura de datos y no se utiliza para el desarrollo de tablas.</b>
+                              </a>
+                          </div>
+                    </li>
+                    <li class="nav-item " role="presentation">
+                      <a class="nav-link" href="htte" data-toggle="" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Entorno de productivo de SaS Studio">
+                        <img src="images/trello.jpg" alt="" width="180" height="180"/>
+                        <span>Trello</span>
+                      </a>
+                         <div class="descip-item">
+                              <a href="httpuide" style="font-size: 15px; color: #ffff;"  title="Instructivo Trello" target="_blank">
+                                  <b>Trello es un software de administración de proyectos con interfaz web y con cliente para iOS y android para organizar proyectos.</b>
+                              </a>
+                          </div>
+                    </li>
+                    <li class="nav-item " role="presentation">
+                      <a class="nav-link" href="htt0BOO35mS6bGCK-dPCas-hBDs/edit#gid=0" data-toggle="" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Guía funcionarios GCABA">
+                        <img src="images/sheets.png" alt="" width="180" height="180"/>
+                        <span style="font-size: 18px">TABLERO DE CONSULTA (GOCI)</span>
+                      </a>
+                      <div class="descip-item">
+                              <a style="font-size: 15px; color: #ffff;">
+                                  <b>Registrar el proceso de respuesta de la Oficina de Transparencia y Control Externo de la Ciudad de Buenos Aires a las consultas de todo el personal policial de la Policía de la Ciudad.</b>
+                              </a>
+                      </div>
+                    </li>
+                    <li class="nav-item " role="presentation">
+                      <a class="nav-link" href="https://zoom.us/" data-toggle="" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Software para videollamadas">
+                        <img src="images/zoom.jpg" alt="" width="180" height="180"/>
+                        <span>ZOOM</span>
+                      </a>
+                         <div class="descip-item">
+                              <a href="https://support.zoom.us/hc/es/articles/204772869-Gu%C3%ADa-de-usuario-de-Zoom-Rooms"  target="_blank" style="font-size: 15px; color: #ffff;"  title="Instructivo Zoom">
+                                  <b>Zoom es una plataforma online que permite realizar video-llamadas en alta definición, con la funcionalidad de compartir escritorio, pizarra, chat, grabar la conferencia, compartir documentos, y poder acceder desde cualquier lugar. se utiliza para reuniones </b>
+                              </a>
+                          </div>
+                    </li>
+
+    </ul>
+</div>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-left">
+                <ul>
+                    <li><a style="color: #ffcb00" href="httres.gob.ar/" target="_blank">Gobierno de la Ciudad de Buenos Aires</a></li>
+                    <li><a style="color: #ffcb00" href="httires.gob.ar/emergencias" target="_blank">103 Emergencias</a></li>
+                    <li><a style="color: #ffcb00" href="htlias.gob.ar/" target="_blank">Fiscalía de la Ciudad</a></li>
+                </ul>
+            </div>
+            <div class="footer-right">
+                <img src="images/Logo_BA Avatars.png" alt="Logo BA" width="224" height="89">
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p ><a style="color: #ffcb00"  href="httb.yseguridad">Ministerio de Seguridad</a></p>
+        </div>
+    </footer>
+
+
+    <!-- Contenedor deslizable de Sobre Nosotros -->
+<div class="about-us-slide" id="about-us-slide" style="display: none; margin-top:70px; overflow:auto; padding:20px;  padding-bottom:60px; ">
+<button id="btn-close-about" class="btn-close-about">Cerrar</button>
+
+    <div class="about-us-inner" style="display:flex; flex-direction:column; gap:20px; align-items:flex-start;">
+        <!-- Texto -->
+        <div style="width:100%;">
+            <h3>¿QUIÉNES SOMOS?</h3>
+            <p>Un organismo conformado por <b style="background-color: #f1d838; color:black;">civiles</b> que actuan con independencia de criterio, idoneidad y secreto profesional (art. 36 in fine Ley 5688 y art. 82 Decreto N° 53/17), funcionando como un mecanismo de supervisión externa de la Policía de la Ciudad de Buenos Aires.</p>
+
+            <h3>¿QUÉ HACEMOS?</h3>
+            <p><b style="background-color: #f1d838; color:black;">Investigamos</b> situaciones donde se presuman <b style="background-color: #f1d838; color:black;">faltas graves</b> del personal de la Policía de la Ciudad (Art. 11 del Decreto N° 53/17). <b style="background-color: #f1d838; color:black;">Recepcionamos</b> denuncias, las cuales pueden realizarse bajo reserva de identidad (Art. 39 Ley 5688). <b style="background-color: #f1d838; color:black;">Recibimos</b> las Declaraciones Juradas Patrimoniales Integrales de los miembros de la Policía de la Ciudad y colaboramos con la autoridad de aplicación de la Ley 4895. Realizamos superviciones en dependencias y despliegues.</p>
+
+            <h3>¿CÓMO LO HACEMOS?</h3>
+            <p>Por medio de un proceso de investigación que involucra la toma de conocimiento a través de las denuncias. Luego acreditando el hecho mediante el proceso de gestión de averiguaciones previas y, finalmente atribuyendo la responsabilidad por medio de la instrucción del sumario.</p>
+
+            <h3>¿PARA QUÉ LO HACEMOS?</h3>
+            <p><b style="background-color: #f1d838; color:black;">Disminuir</b> el mal desempeño policial con el fin de contribuir el fortalecimiento del sistema integral de seguridad pública.</p>
+
+            <h3>COMPETENCIAS</h3>
+            <p><b>Esta entidad tiene un rol esencial en la supervisión de la Policía de la Ciudad en Buenos Aires. Se ocupa de casos de faltas graves del personal policial y elabora informes anuales obligatorios por ley. Además, diseña programas para prevenir la corrupción y aumentar la transparencia en las fuerzas de seguridad de la CABA, presentando propuestas al Ministro de Seguridad. También recopila las Declaraciones Juradas Patrimoniales de los miembros policiales y tiene acceso total a la información requerida según la Ley N° 5688. En resumen, asegura la integridad y la rendición de cuentas en la Policía de la Ciudad, promoviendo la transparencia y previniendo la corrupción.</b></p>
+
+
+        
+        </div>
+
+        <!-- Imagen debajo del texto -->
+<div style="width:100%; margin-bottom:20px">
+    <img src="images/otce_gerencias.png" alt="Gerencias OTCE" style="width:100%; height:auto;">
+</div>
+
+    </div>
+</div>
+
+<!-- Contenedor deslizable de RRHH -->
+<div class="rrhh-slide" id="rrhh-slide" style="display: none; margin-top:70px; overflow:auto; padding:20px; padding-bottom:60px;">
+  <button id="btn-close-rrhh" class="btn-close-about">Cerrar</button>
+
+  <div class="rrhh-inner" style="display:flex; flex-direction:column; gap:20px; align-items:flex-start;">
+      <h3>RRHH</h3>
+      <hr>
+
+      <div class="title-row" style="display:flex; flex-wrap:wrap; gap:30px; justify-content:flex-start;">
+
+        <div class="title-item" style="text-align:center;">
+          <a href="htt3G5dSZPnDGPrbp6S8UR506oba0uWz/view?usp=sharing" target="_blank">
+            <img class="imagen-logorrhh" src="images/induccion.png" alt="induccion" style="width:120px; height:auto;" />
+            <h4>Manual inducción</h4>
+          </a>
+        </div>
+
+        <div class="title-item" style="text-align:center;">
+          <a href="httP0bjsBPY79wIDtpcA16bUC5eh-/view?usp=sharing" target="_blank">
+            <img class="imagen-logorrhh" src="images/licenciasa.png" alt="licencias" style="width:120px; height:auto;" />
+            <h4>Manual Licencias OTC</h4>
+          </a>
+        </div>
+
+        <div class="title-item" style="text-align:center;">
+          <a href="httpXwA13d4KuLfDc9h5QgOLYzKMUGT5/view?usp=sharing" target="_blank">
+            <img class="imagen-logorrhh" src="images/instructivo.png" alt="Instructivos" style="width:120px; height:auto;" />
+            <h4>Instructivo Recibo de Sueldo</h4>
+          </a>
+        </div>
+
+        <div class="title-item" style="text-align:center;">
+          <a href="httpfY9LLVP4RbHCVOqvoE/view?usp=sharing" target="_blank">
+            <img class="imagen-logorrhh" src="images/beneficios.png" alt="beneficios" style="width:120px; height:auto;" />
+            <h4>Manual Licencias MIA</h4>
+          </a>
+        </div>
+
+        <div class="title-item" style="text-align:center;">
+          <a href="htt_vcx5gNNIi8YrY96xI/view?usp=sharing" target="_blank">
+            <img class="imagen-logorrhh" src="images/cumpleaños.png" alt="cumpleaños" style="width:120px; height:auto;" />
+            <h4>Instructivo MIA</h4>
+          </a>
+        </div>
+
+        <div class="title-item" style="text-align:center;">
+          <a href="leyes.html" target="_blank">
+            <img class="imagen-logorrhh" src="images/Iconoley.png" alt="cursos" style="width:120px; height:auto;" />
+            <h4>Instructivo Cursos</h4>
+          </a>
+        </div>
+
+      </div>
+  </div>
+</div>
+
+<!-- Contenedor deslizable de Páginas Relacionadas -->
+<div class="paginas-slide" id="paginas-slide" style="display: none; overflow:auto; padding:10px; padding-bottom:60px;">
+  <button id="btn-close-paginas" class="btn-close-about">Cerrar</button>
+
+  <div class="paginas-inner" style="display:flex; flex-direction:column; gap:20px; align-items:flex-start;">
+      <h3>PÁGINAS RELACIONADAS</h3>
+
+      <!-- GCBA -->
+      <h4>GCBA</h4>
+      <div class="container-accesodirec">
+        <a class="container-accesodirec-logo" href="httar/inicio/" target="_blank">
+          <img class="imag-accesosrelacionados" src="images/LogoBA-accesos.png" alt="Logo GCBA">
+        </a>
+        <div class="container-accesodirec-content">
+          <p>Todos los trámites del Gobierno de la Ciudad: renovación de licencia, pago de infracciones, solicitud de turnos, DNI, contactos, profesionales e información.</p>
+          <p>Consulta toda la información en <a href="hticio/" target="_blank">buenosaires.gob.ar</a></p>
+        </div>
+      </div>
+
+      <!-- BADA -->
+      <h4>BADA</h4>
+      <div class="container-accesodirec">
+        <a class="container-accesodirec-logo" href="htntro.gob.ar/inicio" target="_blank">
+          <img class="imag-accesosrelacionados" src="images/bada.jpg" alt="Logo BADA" style="max-height: 150px;">
+        </a>
+        <div class="container-accesodirec-content">
+          <p>Dentro de BA Desde Adentro, podés: visualizar y descargar recibos de sueldo, gestionar trámites y turnos de licencias médicas, acceder a novedades del GCBA y participar en actividades.</p>
+          <p>Consulta toda la información en <a href="httro.gob.ar/" target="_blank">badesdeadentro.gob.ar</a></p>
+          <ul>
+            <li><a href="httfil" target="_blank">Mis Datos</a></li>
+            <li><a href="htichada" target="_blank">Mis Fichadas</a></li>
+            <li><a href="ht-recibos" target="_blank">Mis Recibos</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- MIA -->
+      <h4>MIA</h4>
+      <div class="container-accesodirec">
+        <a class="container-accesodirec-logo" href="hicense" target="_blank">
+          <img class="imag-accesosrelacionados" src="images/miinformacion.png" alt="Logo MIA">
+        </a>
+        <div class="container-accesodirec-content">
+          <p>Plataforma desarrollada por la Subsecretaría de Gestión de Recursos Humanos del Ministerio de Hacienda y Finanzas del GCBA para agilizar la gestión de licencias. <a href="https://miautogestion.buenosaires.gob.ar/license" target="_blank">mia.gob.ar</a></p>
+        </div>
+      </div>
+
+  </div>
+</div>
+<!-- Contenedor deslizable de Contacto -->
+<div class="contacto-slide" id="contacto-slide" style="display: none; margin-top:70px; overflow:auto; padding:20px; padding-bottom:60px;">
+  <button id="btn-close-contacto" class="btn-close-about">Cerrar</button>
+
+  <div class="contacto-inner" style="display:flex; flex-direction:column; gap:20px; align-items:flex-start; max-width:1100px; margin:0 auto;">
+    <h3>Contacto</h3>
+
+    <!-- Dirección principal -->
+    <address class="subtitle">
+      Av. Regimiento de Patricios 1052, Piso 1 Oficina 103 - CABA.<br>
+      Tel: 4323-8900 / 4323-8900 - int: 115521
+    </address>
+
+    <!-- Mapa -->
+    <iframe
+      width="80%"
+      height="250"
+      frameborder="0"
+      style="border:0; border-radius:12px;"
+      src="h.6395692!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95a334b39eb51449%3A0xf2ee7ab1e34778da!2sAv.%20Regimiento%20de%20Patricios%201052%20PISO%201%20OFICINA%20103%2C%20C1265%20CABA!5e0!3m2!1sen!2sar"
+      allowfullscreen>
+    </iframe>
+
+    <!-- Dashboard 1 -->
+    <iframe 
+      class="dashboard"
+      width="100%" 
+      src="he-4fc0-a370-c380e111bec2/page/6rBKF" 
+      frameborder="0" 
+      style="border:0; border-radius:12px;" 
+      allowfullscreen 
+      sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox">
+    </iframe>
+    <address class="subtitle">
+      ----------------------------------------------------------------------------------------------
+    </address>
+    <!-- Dirección secundaria -->
+    <address class="subtitle">
+      Cruz Malta - Av. Martin García 464<br>
+      Conmutador: edificio:5030-9860<br>
+      Conmutador:5030-9885 int:5030-9860
+    </address>
+
+    <!-- Mapa -->
+    <iframe
+      width="80%"
+      height="1200"
+      frameborder="0"
+      style="border:0; border-radius:12px;"
+      src="ht3663.1!3m3!1m2!1s0x95a335f474179d5b%3A0x165b1a63d75eb53e!2sEx%20-%20F%C3%A1brica%20de%20Yerba%20%E2%80%9CCruz%20Malta%E2%80%9D%2C%20Av.%20Mart%C3%ADn%20Garc%C3%ADa%20464%2C%20C1268%20CABA!5e0!3m2!1sen!2sar"
+      allowfullscreen>
+    </iframe>
+
+    <!-- Dashboard 2 -->
+    <iframe 
+      class="dashboard"
+      width="100%" 
+      src="hte4016b0041/page/6rBKF" 
+      frameborder="0" 
+      style="border:0; border-radius:12px;" 
+      allowfullscreen 
+      sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox">
+    </iframe>
+
+  </div>
+</div>
+
+
+<!-- Modal SADE / PORTAL -->
+<div id="modal-sade" class="modal">
+  <div class="modal-content">
+    <span id="btn-close-modal" class="close">&times;</span>
+    <h3>SADE / PORTAL</h3>
+    <hr>
+    <ul>
+      <li><a href="h/login/login.zul" target="_blank">SADE</a></li>
+      <li><a href="hManuales/SADE+-+Manuales" target="_blank">SADE Manuales</a></li>
+      <li><a href="htanuales/SADE+-+Tutoriales+Curso" target="_blank">SADE Cursos</a></li>
+      <li><a href="htt.ar/" target="_blank">Mesa Ayuda SADE</a></li>
+    </ul>
+    <figure>
+      <img src="images/SADE-login.png" alt="SADE" width="970" height="524"/>
+    </figure>
+  </div>
+</div>
+
+
+<!-- Contenedor deslizable Carpeta Compartida -->
+<div class="carpeta-slide" id="carpeta-slide" style="display:none;">
+  <div class="carpeta-overlay">
+    <div class="carpeta-inner">
+      <button id="btn-close-carpeta" class="btn-close-about">&times;</button>
+      <h3>INSTRUCTIVO</h3>
+      <hr>
+      <h4>Acceso a Carpeta Compartida</h4>
+      <div class="container-accesodirec1">
+        <div class="container-accesodirec-content1">
+          <p>Para acceder a la carpeta compartida en la red utilizando la URL <code>file://br-wp-fc$</code>, sigue estos pasos:</p>
+        <ol>
+          <li>
+            <h5>Windows:</h5>
+            <ul class="tablamenucompartido">
+              <li>Abre el Explorador de archivos.</li>
+              <li>En la barra de direcciones, escribe <code>\\br-wp-fsmin02.c$</code> y presiona Enter.</li>
+              <li>Ingresa tus credenciales de red si se solicita.</li>
+              <li>Para mapear la unidad de red, haz clic derecho en "Este PC", selecciona "Conectar a unidad de red" y completa la ruta.</li>
+            </ul>
+          </li>
+          <li>
+            <h5>macOS:</h5>
+            <ul class="tablamenucompartido">
+              <li>Abre el Finder.</li>
+              <li>Selecciona "Ir" → "Conectarse al servidor…" o Cmd + K.</li>
+              <li>Introduce la dirección <code>smb://br-wp-fsmin02c$</code> y conecta.</li>
+            </ul>
+          </li>
+          <li>
+            <h5>Linux:</h5>
+            <ul class="tablamenucompartido">
+              <li>Abre el gestor de archivos.</li>
+              <li>Selecciona "Conectar a servidor" e introduce la dirección <code>smb://brr/sgc$</code>.</li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <!-- Scripts -->
+    <script src="js/core.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/script.horario.js"></script>
+    <script src="js/script.ventanaemergente.js"></script>
+    <script src="js/script.buscador.js"></script>
+     <script src="js/scriptchatbox.js"></script>
+
+<script>
+window.addEventListener('load', () => {
+    const loader = document.getElementById('loader');
+    if(loader){
+        loader.style.display = 'none'; // Oculta el loader al terminar de cargar
+    }
+});
+</script>
+<script>
+function scrollToBuscador() {
+    // Desplaza suavemente hasta el buscador
+    const buscador = document.getElementById('buscadorAccesos');
+    if (buscador) {
+        buscador.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // Espera un poco y pone el foco en el input
+        setTimeout(() => {
+            const input = document.getElementById('buscador');
+            if (input) input.focus();
+        }, 600);
+    }
+}
+</script>
+
+
+</body>
+</html>

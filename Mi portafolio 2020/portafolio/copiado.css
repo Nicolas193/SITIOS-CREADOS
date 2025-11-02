@@ -1,0 +1,19 @@
+nav{
+	margin: 20px;
+}
+
+a{ 
+	padding: 5px;
+	font-size: 20px;
+	border-radius: 10px 10px 10px 10px;
+	opacity: 80%;
+}
+
+
+a:hover{
+	transition: 0.5s;
+	background-color: #fff;
+	opacity: 100%;
+}
+
+

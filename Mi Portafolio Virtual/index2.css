@@ -1,0 +1,375 @@
+/* === RESET === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* === BODY === */
+body {
+  font-family: "Roboto", sans-serif;
+  background: #f9f9f9;
+  color: #333;
+  line-height: 1.7;
+  font-size: 17px; /* un poco más grande */
+}
+
+/* === PAGE WRAPPER === */
+.page {
+  max-width: 1400px; /* más ancho */
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  padding: 40px 50px;
+}
+
+/* === HEADER === */
+.header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.avatar-wrap {
+  position: relative;
+  display: inline-block;
+  width: 180px;
+  height: 180px;
+  margin-bottom: 20px;
+}
+
+.avatar {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  z-index: 2;
+  position: relative;
+}
+
+.avatar-ring-left,
+.avatar-ring-right {
+  position: absolute;
+  width: 210px;
+  height: 210px;
+  border: 4px solid #ffc107;
+  border-radius: 50%;
+  top: -15px;
+  z-index: 1;
+}
+
+.avatar-ring-left {
+  left: -15px;
+  border-color: #ff9800;
+}
+
+.avatar-ring-right {
+  right: -15px;
+  border-color: #ffb300;
+}
+
+.name {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #222;
+  letter-spacing: 1px;
+}
+
+.meta {
+  font-size: 16px;
+  color: #666;
+}
+
+/* === GRID === */
+.grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1.2fr 1fr;
+  gap: 60px; /* más separación entre columnas */
+}
+
+/* === SECTION TITLES === */
+.section-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #444;
+  border-bottom: 2px solid #ffc107;
+  padding-bottom: 6px;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+
+/* === LEFT COLUMN === */
+.left {
+  padding-right: 20px;
+}
+
+.experience .year {
+  font-weight: 700;
+  color: #ff9800;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.experience p {
+  font-size: 15px;
+  margin-bottom: 14px;
+}
+
+.languages img {
+  width: 22px;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
+/* === CENTER COLUMN === */
+.center {
+  text-align: center;
+}
+
+.quote {
+  font-size: 17px;
+  color: #444;
+  margin-bottom: 40px;
+  font-style: italic;
+  line-height: 1.8;
+}
+
+.open-quote,
+.close-quote {
+  font-size: 50px;
+  color: #ffc107;
+  vertical-align: middle;
+}
+
+
+/* === CENTRO: IMÁGENES PORTAFOLIO === */
+.center-art {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  height: 420px;            /* suficiente espacio total */
+  margin: 40px auto 0;
+  overflow: visible;
+  display: block;
+  z-index: 2;
+}
+
+.center-art img {
+  position: absolute;
+  object-fit: contain;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  opacity: 0.95;
+  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.35));
+  will-change: transform;
+}
+
+/* auriculares */
+.center-art img.audiculares {
+  top: 90px;
+  left: -10%;
+  width: 105px;
+  transform: rotate(-10deg);
+}
+
+/* celular */
+.center-art img.celular {
+  top: 90px;
+  left: 80%;
+  width: 105px;
+  transform: rotate(8deg);
+}
+
+/* computadora (centro principal) */
+.center-art img.computadora {
+  top: 150px;
+  left: 50%;
+  width: 220px;
+  transform: translateX(-50%);
+  z-index: 3;
+}
+
+/* libro más apartado a la izquierda */
+.center-art img.libro {
+  top: 290px;
+  left: -10%;
+  width: 105px;
+  transform: rotate(3deg);
+  z-index: 2;
+}
+
+/* mouse más arriba y más a la derecha */
+.center-art img.mouse {
+  top: 270px;          /* subido */
+  left: 80%;           /* más a la derecha */
+  width: 105px;
+  transform: rotate(-6deg);
+  z-index: 3;
+}
+
+/* portafolio encima de la computadora */
+.center-art img.portafolio {
+  top: 20px;           /* más arriba, sobre la computadora */
+  left: 50%;
+  width: 105px;
+  transform: translateX(-50%) rotate(-2deg);
+  z-index: 4;          /* sobre todo */
+}
+
+/* hover sutil */
+.center-art img:hover {
+  transform: scale(1.06);
+  opacity: 1;
+}
+
+/* versión móvil */
+@media (max-width: 720px) {
+  .center-art {
+    max-width: 340px;
+    height: 280px;
+  }
+  .center-art img.audiculares { top: 18px; left: 8%; width: 50px; }
+  .center-art img.celular     { top: 18px; left: 74%; width: 44px; }
+  .center-art img.computadora { top: 90px; width: 150px; }
+  .center-art img.libro       { top: 180px; left: 2%; width: 55px; }
+  .center-art img.mouse       { top: 140px; left: 80%; width: 50px; }
+  .center-art img.portafolio  { top: 70px; left: 50%; width: 70px; }
+}
+
+/* Posiciones individuales */
+.audiculares { top: 10%; left: 20%; }
+.celular { top: 30%; right: 15%; }
+.computadora { top: 45%; left: 38%; }
+.libro { top: 20%; right: 35%; }
+.mouse { top: 65%; left: 25%; }
+.portafolio { top: 15%; left: 55%; }
+
+.education-list {
+  list-style: none;
+  text-align: left;
+  margin-top: 10px;
+}
+
+.education-list .year {
+  color: #ff9800;
+  font-weight: 600;
+  display: block;
+}
+
+/* === RIGHT COLUMN === */
+.right {
+  padding-left: 20px;
+}
+
+.contact {
+  list-style: none;
+  margin-bottom: 20px;
+}
+
+.contact li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.contact .material-icons {
+  color: #ff9800;
+  margin-right: 10px;
+}
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: flex-start;
+}
+
+.skill {
+  text-align: center;
+  width: 90px;
+}
+
+.skill-label {
+  display: block;
+  margin-top: 6px;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+/* Circle Styles */
+.circle {
+  width: 70px;
+  height: 70px;
+}
+
+.circle-bg {
+  fill: none;
+  stroke: #eee;
+  stroke-width: 3;
+}
+
+.circle-fill {
+  fill: none;
+  stroke: #ff9800;
+  stroke-width: 3;
+  stroke-linecap: round;
+  animation: progress 1.5s ease-out forwards;
+}
+
+@keyframes progress {
+  from {
+    stroke-dasharray: 0 100;
+  }
+}
+
+.hobbies {
+  list-style: none;
+  margin-top: 10px;
+}
+
+.hobbies li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.hobbies .material-icons {
+  color: #ff9800;
+  margin-right: 8px;
+}
+
+
+/* === LÍNEAS DE CONEXIÓN ENTRE ÍCONOS === */
+.center-art .lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* No interfiere con los clics */
+  z-index: 1;
+}
+
+.center-art .line {
+  stroke: rgba(255, 255, 255, 0.6);
+  stroke-width: 2.5;
+  fill: none;
+  stroke-linecap: round;
+  stroke-dasharray: 6, 4; /* línea punteada sutil */
+  transition: stroke 0.3s ease, stroke-width 0.3s ease;
+}
+
+/* Efecto de hover sobre cada ícono: resalta su línea */
+.center-art img:hover ~ .lines .line {
+  stroke: rgba(255, 255, 255, 0.3);
+}
+.center-art img.audiculares:hover ~ .lines .line-audiculares,
+.center-art img.celular:hover ~ .lines .line-celular,
+.center-art img.computadora:hover ~ .lines .line-computadora,
+.center-art img.libro:hover ~ .lines .line-libro,
+.center-art img.mouse:hover ~ .lines .line-mouse,
+.center-art img.portafolio:hover ~ .lines .line-portafolio {
+  stroke: #ffd700;
+  stroke-width: 3.5;
+  stroke-dasharray: none;
+}

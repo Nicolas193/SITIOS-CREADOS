@@ -1,0 +1,326 @@
+/* Importamos el archivo de colores */
+@import url('colores.css');
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  min-height: 100vh;
+}
+
+.menu-icon {
+width:18px;
+ vertical-align:middle; 
+ margin-right:5px;
+  }
+
+  .menu-perfil {
+  width: 55px;
+  height: 55px;
+  margin-right: 10px;
+  vertical-align: middle;
+
+}
+
+.menu-carpeta{
+width:33px; 
+height:33px;
+
+}
+
+
+/* Navbar - Contenedor vertical */
+.navbar {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+
+/* Usuario - Estilo de los enlaces de usuario */
+.user-container a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+  background-color: var(--color-verde-oscuro);
+  color: var(--color-gris-claro);
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: background-color 0.3s ease;
+}
+
+.user-container a:hover {
+  background-color: var(--color-morado);
+}
+
+.user-icon {
+  font-size: 18px;
+  margin-right: 8px;
+}
+
+.username {
+  font-weight: bold;
+  color: #000;
+}
+
+.user-role {
+  font-size: 11px;
+  color: var(--color-amarillo);
+}
+
+/* Estilo del menú y secciones */
+.menu-section p {
+  font-weight: bold;
+  font-size: 13px;
+  text-transform: uppercase;
+  margin: 10px 0 6px;
+  padding: 8px 10px;
+  cursor: pointer;
+  background-color: var(--color-verde-oscuro);
+  border-radius: 4px;
+  color: var(--color-gris-claro);
+  transition: background-color 0.3s ease;
+}
+
+.menu-section p:hover {
+  background-color: var(--color-verde-oscuro);
+  color: var(--color-amarillo);
+}
+
+/* Submenú */
+.submenu {
+  display: none;
+  flex-direction: column;
+  margin-bottom: 10px;
+  background-color: var(--color-gris-claro);
+  border: 1px solid var(--color-verde-oscuro);
+  border-radius: 6px;
+  padding: 6px 0;
+  box-shadow: 0 2px 6px #ffcb00;
+}
+
+.submenu.show {
+  display: flex;
+}
+
+.submenu a {
+  padding: 8px 12px;
+  margin: 3px 0;
+  color: var(--color-verde-oscuro);
+  text-decoration: none;
+  font-size: 13px;
+  border-radius: 4px;
+  background-color: var(--color-gris-claro);
+  transition: background-color 0.2s ease;
+}
+
+.submenu a:hover {
+  background-color: #e0dfe0; /* un gris suave */
+}
+
+.navbar a.highlight {
+  background: linear-gradient(to right, var(--color-amarillo), var(--color-morado));
+  color: #000;
+  font-weight: bold;
+}
+
+/* Cerrar sesión */
+#cerrar-sesion {
+  display: block;
+  padding: 10px;
+  color: var(--color-gris-claro);
+  background-color: #a51b1b;
+  text-decoration: none;
+  margin: 30px 15px 10px;
+  text-align: center;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+#cerrar-sesion:hover {
+  background-color: var(--color-verde-oscuro);
+}
+
+/* Perfil de usuario */
+.user-profile {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  background-color: var(--color-gris-claro);
+  color: var(--color-verde-oscuro);
+  text-decoration: none;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px #ffcb00;
+  transition: background-color 0.3s ease;
+  margin-bottom: 10px;
+}
+
+.user-profile:hover {
+  background-color: #e0dfe0;
+}
+
+.user-icon {
+  font-size: 22px;
+  margin-right: 10px;
+}
+
+.username {
+  font-weight: 600;
+  font-size: 14px;
+  color: #000;
+}
+
+.user-role {
+  font-size: 12px;
+  color: var(--color-verde-oscuro);
+}
+
+/* Input de búsqueda del menú */
+#menu-search {
+  padding: 6px 8px;
+  font-size: 13px;
+  border: 1px solid var(--color-verde-oscuro);
+  border-radius: 4px;
+  outline: none;
+  box-sizing: border-box;
+  margin-bottom: 15px;
+}
+
+#menu-search:focus {
+  border-color: var(--color-morado);
+}
+
+/* Resaltado de búsqueda */
+.submenu a.highlight-search {
+  background-color: var(--color-amarillo) !important;
+  color: var(--color-verde-oscuro) !important;
+  font-weight: bold;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 220px;
+  height: 100vh;
+  background: linear-gradient(to bottom, var(--color-morado), var(--color-verde-oscuro));
+  color: var(--color-gris-claro);
+  overflow-y: auto;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+  border-radius: 5px 0 0 5px;
+  transition: width 0.3s ease;
+  z-index: 1000;
+  border: 0.5px solid var(--color-verde-oscuro);
+}
+
+.sidebar.collapsed {
+  width: 0;
+  overflow: hidden;
+  padding: 0;
+}
+
+/* Botón toggle más fino, claro, fijo en la parte inferior */
+.toggle-arrow {
+  position: fixed;
+  bottom: 10px;
+  left: 220px;
+  height: 40px;
+  width: 20px;
+  background-color: var(--color-gris-claro);
+  color: var(--color-morado);
+  border: none;
+  cursor: pointer;
+  border-radius: 0 5px 5px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  z-index: 1101;
+  box-shadow: 0 1px 4px #ffcb00;
+  transition: left 0.3s ease;
+}
+
+.sidebar.collapsed + .toggle-arrow {
+  left: 0;
+}
+
+.toggle-arrow {
+  width: 12px;
+  height: 40px;
+  padding: 0;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-download-csv{
+  background-color: #531f5d !important;
+  box-shadow: 0 4px 8px #531f5d !important;
+}
+
+input[type="text"], input[type="email"], select{
+
+ border: 2px solid #531f5d !important;
+}
+
+.boton-guardar{
+  background: linear-gradient(90deg, #531f5d, #531f5d) !important;
+  box-shadow: 0 9px 24px #531f5d !important;
+}
+
+.avatar-circle{
+  background:linear-gradient(135deg, #531f5d, #531f5d) !important;
+}
+
+form button {
+ background: linear-gradient(135deg, #531f5d, #531f5d) !important;
+}
+
+input[type="text"]:focus, input[type="date"]:focus, input[type="datetime-local"]:focus, select:focus, textarea:focus{
+  border-color: #531f5d !important;
+  box-shadow: 0 0 8px #531f5d !important;
+}
+
+thead th{
+  background-color:#531f5d !important ;
+}
+
+.tema-opcion input[type="radio"]{
+  accent-color: #531f5d !important;
+}
+
+button:hover{
+  box-shadow:0 6px 20px #531f5d  !important  ;
+}
+
+h1.title{
+  color: #531f5d !important;
+}
+
+.btn-primary:hover, form.form-wrapper input[type="submit"]:hover, form[method="POST"] input[type="submit"]:hover, form[method="GET"] input[type="submit"]:hover, table.table input[type="submit"]:hover{
+  background:#531f5d !important;
+}
+
+.btn-update{
+  background:#531f5d !important;
+  box-shadow: 0 5px 15px #531f5d !important;
+}
+
+.btn-gradient{
+   background:#531f5d !important ;
+}
+
+h2 { 
+color:#531f5d !important;
+}
+
+.comentarios-section h3 {
+  color:#531f5d !important;
+}

@@ -1,0 +1,95 @@
+/* Estilo de la sección de formulario */
+.form-wrapper {
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f7f7f7;
+}
+
+/* Estilo para etiquetas de formulario */
+.form-wrapper label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+/* Estilo de los campos de entrada */
+.form-wrapper input[type="datetime-local"],
+.form-wrapper input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+/* Estilo del botón de envío */
+.form-wrapper button[type="submit"] {
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Estilo del botón de envío al pasar el cursor sobre él */
+.form-wrapper button[type="submit"]:hover {
+  background-color: #3e8e41;
+}
+
+/* actualizar */
+  .btn-actualizar {
+  background-color: #3399ff;
+  color: #fff;
+  padding: 5px 11px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.btn-actualizar:hover {
+  background-color: #66b3ff;
+}
+
+/* boton */
+
+
+    
+button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+    .pdf-btn {
+  background-color: #1c6ea4;
+  border: none;
+  color: white;
+  padding: 10px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.imagenpdf {
+margin-left: -5px;
+  width: 35px;
+  height: 50px;
+}
+
+  

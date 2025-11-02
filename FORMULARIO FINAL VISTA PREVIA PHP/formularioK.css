@@ -1,0 +1,66 @@
+/* color, centrado de toda la ventada, tamaño de pantalla ancho, margenes centrado, ancho */
+.portada{
+   background-color: #2d6b48;				/* color de fondo */
+   text-align: center;						
+   width: 60%;
+   margin: auto;
+   height: 1300px;
+}
+/* contenedor imagen */
+.logo{
+	padding: 50px 0 0 0;
+}
+/* imagen */
+.logo-img{
+	height: 200px;
+	box-shadow:0px 0px 2px 2px #338b58;
+}
+/* texto para que realicen la encuentra */ 
+.titulo{
+	color: #ffff;
+	font-size: 20px;
+	margin: 60px;
+	text-shadow: 0 0 2px #000;
+}
+
+/* boton de iniciar encuenta */
+.button{
+	margin: auto;
+	background-color: #2d6b48;
+	box-shadow: 0px 0px 5px  0.5px #fff;
+	border-radius:10px 10px 10px 10px ;
+	padding: 25px;
+	width: 170px;
+	font-family: Arial;
+	color: #000;
+	text-shadow: 0 0 2px #6a6a6a;
+}
+/* texto iniciar encuentra */
+i{
+	font-size: 30px;
+	color: #947859;
+	padding: 20px;
+}
+
+/* efectos al pasar el puntero al boton */ 
+.button:hover{
+	font-size: 18px;
+	background-color: #568b6d;
+}
+
+
+/* responsi del celular */
+
+@media only screen and (max-width: 1300px){
+
+.portada{
+	width: 100%
+}
+
+
+.titulo{
+	font-size: 20px;
+}
+
+
+}

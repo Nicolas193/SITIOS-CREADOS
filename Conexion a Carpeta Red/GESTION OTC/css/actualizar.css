@@ -1,0 +1,66 @@
+body {
+    position: relative;
+    background-color: #f7f7f7; /* Fondo gris claro */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Sombra más suave y más amplia */
+}
+
+.volver-btn {
+    width: 100%;
+    display: inline-block;
+    background-color: #ffcc00; /* Amarillo */
+    color: #333;
+    padding: 12px;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 5px;
+    margin-bottom: 20px; /* Mayor espacio entre el botón y los elementos anteriores */
+}
+
+.volver-btn:hover {
+    background-color: #e6b800; /* Amarillo más oscuro al pasar el ratón */
+}
+
+label {
+    margin-top: 15px; /* Mayor espacio entre etiquetas */
+    display: block; /* Para que cada etiqueta esté en una línea separada */
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #ffcc00;
+    color: #333;
+    padding: 12px 20px; /* Más espacio alrededor del texto del botón */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    display: inline-block;
+}
+
+button:hover {
+    background-color: #e6b800;
+}

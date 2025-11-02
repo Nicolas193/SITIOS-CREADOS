@@ -1,0 +1,100 @@
+.cajadeinfo{
+	overflow: hidden;
+	text-align: center;
+	margin: 30px;
+	background-color: #b1b1b1;
+}
+
+.formulario{
+	text-align: center;
+	margin: auto;
+	background-color: #ffff;
+	border:2px solid #000;
+}
+
+.datosinformativos {
+	text-align: center;
+		display: inline-block;
+		width: 100%;
+		padding: 50px;
+}
+.datosinformativos i{
+	padding: 20px;
+	font-size: 30px;
+	color: #4e57d5;
+}
+
+.pos div{
+	padding: 20px;
+	font-size: 35px;
+	text-shadow: 0px 0px 0px #000;
+	color: #222422;
+}
+
+.pos{
+	text-align: center;
+	width: 100%;
+	margin: auto;
+}
+
+.pos p{
+	font-size: 20px;
+	color: #393939;
+}
+
+.pos_p{
+	font-size: 20px;
+	font: oblique 120% sans-serif bold;
+	color: #393939;
+}
+
+
+label {
+
+    display:inline-block;
+    margin-top:20px;
+    letter-spacing:1px;
+}
+ 
+.principal {
+    display:block;
+    margin:0 auto;
+    width:510px;
+    color: #0000;
+    font-family:Arial;
+}
+ 
+form {
+    margin:0 auto;
+    width:100%;
+    max-width: 400px;
+}
+ 
+input, textarea {
+    width:380px;
+    height:27px;
+    background:#b4b4b4;
+    border:2px solid #000;
+    padding:10px;
+    margin-top:5px;
+    font-size:10px;
+    color:#ffffff;
+}
+ 
+textarea {
+    height:150px;
+}
+ 
+#submit {
+    width:85px;
+    height:35px;
+    border:none;
+    margin-top:20px;
+    cursor:pointer;
+}
+
+.textomail{
+	padding: 20px;
+	font-family: Arial;
+	color: #4e57d5;
+}

@@ -1,0 +1,172 @@
+        /* Estilo general para el cuerpo y HTML */
+        html {
+            font-family: sans-serif;
+            line-height: 1.15;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            -ms-overflow-style: scrollbar;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+
+        body {
+            font-family: "Barlow", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            font-size: 16px;
+            font-weight: 300;
+            line-height: 1.5;
+            color: #3d4137;
+            text-align: left;
+            background-color: #3d4137;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            -webkit-text-size-adjust: none;
+            -webkit-font-smoothing: subpixel-antialiased;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        /* Estilo para el encabezado de la página */
+        .page-header {
+            position: relative;
+            border: 1px solid transparent;
+            background: linear-gradient(to bottom, #531f5d, #531f5d);
+            padding: 0 0 30px;
+            height: 140px;
+        }
+
+
+
+        /* Estilo general para imágenes */
+        img {
+            
+            max-width: 100%;
+            height: auto;
+            float: right;
+        }
+
+        /* Estilos para el logo de la marca */
+        .brand-logo {
+            vertical-align: middle;
+            text-align: left;
+            display: inline-block;
+        }
+
+        .brand-logo:hover {
+            color: #fff;
+        }
+
+        .brand-logo ~ img {
+            margin-top: 9px;
+            margin-left: 20px;
+        }
+
+        /* Estilo para el logo específico de 'bsas' */
+        .brand-logo-bsas {
+            position: relative;
+            left: -2.5%;
+            top: -100px;
+        }
+
+        /* Estilos responsivos para el logo 'bsas' en pantallas pequeñas */
+        @media (max-width: 768px) {
+            .brand-logo-bsas {
+                padding: 0;
+                border-radius: 0;
+                width: 100%;
+            }
+
+            .img-logobsas {
+                position: relative;
+                left: -20%;
+            }
+        }
+
+        /* Estilos adicionales para la estructura de la página */
+        header, .page header, .page section, .page footer {
+            position: relative;
+        }
+
+        .page > * {
+            width: 100%;
+        }
+
+ 
+
+        /* Estilo para el título principal */
+        .main-title {
+            text-align: center;
+            font-size: 24px;
+            color: #fff;
+            padding: 70px;
+            text-transform: uppercase;
+        }
+
+/* Estilo para los instructivos */
+.instructions {
+    margin: 20px auto; /* Centra el contenedor y añade márgenes superior e inferior */
+    padding: 0 10px; /* Añade un poco de espacio a los lados */
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en múltiples líneas */
+    justify-content: center; /* Centra los elementos en el contenedor */
+    gap: 20px; /* Espacio entre los elementos */
+}
+
+/* Estilo para los contenedores de iconos */
+.icon-container {
+    flex: 1 1 300px; /* Base de 300px y crecen si hay espacio */
+    max-width: 400px; /* Limita el ancho máximo para mantener el tamaño de los contenedores */
+    box-sizing: border-box; /* Incluye el padding y borde en el tamaño total del elemento */
+    background-color: #3b434b; /* Fondo ligeramente diferente para el contenedor */
+    border-radius: 8px; /* Bordes redondeados */
+    overflow: hidden; /* Oculta cualquier contenido que se desborde */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave para el hover */
+}
+
+/* Estilo para los enlaces dentro de los contenedores */
+.icon-container a {
+    text-decoration: none; /* Elimina el subrayado de los enlaces */
+    color: inherit; /* Hereda el color del contenedor padre */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px; /* Espacio interior para los elementos */
+    height: 100%; /* Asegura que el enlace ocupe todo el contenedor */
+    box-sizing: border-box; /* Incluye el padding en el tamaño total */
+}
+
+/* Estilo para las imágenes en los contenedores */
+.icon-img {
+    width: 100%; /* Ajusta el ancho máximo al contenedor */
+    height: auto; /* Mantiene la proporción de la imagen */
+    max-height: 200px; /* Limita la altura máxima de la imagen */
+    object-fit: cover; /* Mantiene la proporción y evita que la imagen se estire */
+    margin-bottom: 10px; /* Espacio debajo de la imagen */
+}
+
+/* Estilo para el título debajo de cada imagen en los elementos */
+.icon-title {
+    font-size: 18px; /* Ajusta el tamaño del texto del título */
+    color: #fff; /* Color blanco para el título */
+    text-transform: uppercase;
+    margin-top: 10px; /* Espacio arriba del título */
+    font-weight: 600; /* Peso del texto más fuerte */
+}
+
+/* Estilo para la descripción debajo del título en los elementos */
+.icon-description {
+    font-size: 14px;
+    color: #a5a5a5;
+    text-align: center; /* Centra el texto */
+    margin-top: 10px; /* Espacio arriba de la descripción */
+}
+
+/* Efecto visual en hover para los contenedores */
+.icon-container:hover {
+    transform: translateY(-5px); /* Eleva el contenedor ligeramente */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Añade una sombra sutil */
+}

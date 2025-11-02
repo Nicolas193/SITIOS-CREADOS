@@ -1,0 +1,475 @@
+
+
+.imageninicio_imag{
+	position: fixed;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    box-sizing: border-box;
+    background-size: cover;
+    z-index:30;
+    filter: blur(10px);
+
+}
+.imageninicio{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    background: #000;
+    margin: 0;
+    padding: 0;
+    font-family: 'Chakra Petch', sans-serif;
+    box-sizing: border-box;
+    display: block;
+    z-index: -10;
+}
+
+.todo{
+	text-align: center;
+	color: #ffff;
+	margin-top: 30px !important;
+	justify-content: center !important;
+}
+.cv{
+	box-shadow:0.5px 0.5px 0.5px 2.0px #ffff;
+	text-align: left;
+	display: inline-flex;
+}
+.cajacontenedoraCV{
+	background: #0000;
+	width: 80%;
+	margin: 20px;
+	margin-top: 50px;
+}
+h1{
+	background-color:#d28484 ;
+	width: 70%;
+	font-weight: lighter !important;
+}
+
+h1 b{
+	font-weight: 500;
+}
+
+
+h2{
+	color:#939393 ;
+	font-weight: 400 !important;
+}
+
+.Breve{
+	width: 680px;
+	padding: 2px;
+	font: status-bar;
+	font-size: 15px;
+}
+
+.experiencia{
+	margin-top: 45px;
+
+}
+
+
+
+h3{
+	margin-top: 50px !important;
+	font-size: 20px !important;
+	font-weight: 900 !important;
+}
+
+.cajacontenedoraCV p{
+	color:#939393 !important;
+}
+
+
+.perfil{
+	width: 500px;
+	height: auto;
+	background:#3f3f3f;
+}
+
+.perfil p{
+	color: #ffff;
+}
+
+.fotoperfil{
+	margin:20px;
+	height: 300px;
+	width: 300px;
+	border-radius: 50% ;
+}
+
+.perfil span{
+	color: #ffff;
+}
+
+h4{
+	color: #ffff;
+}
+
+.perfil-sub{
+	margin: 40px;
+}
+
+.contac{
+	padding: 15px 0;
+}
+
+.contac i{
+	color: #ffff;
+}
+
+#line-container {
+    width: 300px;
+    height: 8px;
+    margin: 50px auto;
+}
+
+
+.progress{
+	margin-top:-10px ;
+	width: 200px; 
+	height: 10px !important; 
+}
+
+.habili1 .progress-bar{
+	width: 0% ;
+	background: #d48207 !important;
+	animation:subanimacion 2s;
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+
+@keyframes subanimacion{
+
+    0%{
+        width: 0%;
+    }
+
+    100%{
+        width: 80%;
+    }
+
+    }
+
+
+
+    .habili2 .progress-bar{
+	width: 0% ;
+	background: #d48207 !important;
+	animation:subanimacion1 2s;
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+
+@keyframes subanimacion1{
+
+    0%{
+        width: 0%;
+    }
+
+    100%{
+        width: 95%;
+    }
+
+    }
+
+
+    .habili3 .progress-bar{
+	width: 0% ;
+	background: #d48207 !important;
+	animation:subanimacion2 2s;
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+
+@keyframes subanimacion2{
+
+    0%{
+        width: 0%;
+    }
+
+    100%{
+        width: 90%;
+    }
+
+    }
+
+   .habili3 .progress-bar{
+	width: 0% ;
+	background: #d48207 !important;
+	animation:subanimacion3 2s;
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+
+@keyframes subanimacion3{
+
+    0%{
+        width: 0%;
+    }
+
+    100%{
+        width: 90%;
+    }
+
+    }
+
+
+   .habili4 .progress-bar{
+	width: 0% ;
+	background: #d48207 !important;
+	animation:subanimacion4 2s;
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+
+@keyframes subanimacion4{
+
+    0%{
+        width: 0%;
+    }
+
+    100%{
+        width: 60%;
+    }
+
+    }
+
+
+    .habili5 .progress-bar{
+	width: 0% ;
+	background: #d48207 !important;
+	animation:subanimacion5 2s;
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+
+@keyframes subanimacion5{
+
+    0%{
+        width: 0%;
+    }
+
+    100%{
+        width: 80%;
+    }
+
+    }
+
+
+    .habili6 .progress-bar{
+	width: 0% ;
+	background: #d48207 !important;
+	animation:subanimacion6 2s;
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+
+@keyframes subanimacion6{
+
+    0%{
+        width: 0%;
+    }
+
+    100%{
+        width: 75%;
+    }
+
+    }
+
+
+   .habili7 .progress-bar{
+	width: 0% ;
+	background: #d48207 !important;
+	animation:subanimacion7 2s;
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+
+@keyframes subanimacion7{
+
+    0%{
+        width: 0%;
+    }
+
+    100%{
+        width: 60%;
+    }
+
+    }
+
+   .habili8 .progress-bar{
+	width: 0% ;
+	background: #d48207 !important;
+	animation:subanimacion8 2s;
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+
+@keyframes subanimacion8{
+
+    0%{
+        width: 0%;
+    }
+
+    100%{
+        width: 90%;
+    }
+
+    }
+
+   .habili9 .progress-bar{
+	width: 0% ;
+	background: #d48207 !important;
+	animation:subanimacion9 2s;
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+
+@keyframes subanimacion9{
+
+    0%{
+        width: 0%;
+    }
+
+    100%{
+        width: 50%;
+    }
+
+    }
+
+  .habili10 .progress-bar{
+	width: 0% ;
+	background: #d48207 !important;
+	animation:subanimacion10 2s;
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+
+@keyframes subanimacion10{
+
+    0%{
+        width: 0%;
+    }
+
+    100%{
+        width: 80%;
+    }
+
+    }
+
+  .habili11 .progress-bar{
+	width: 0% ;
+	background: #d48207 !important;
+	animation:subanimacion11 2s;
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+
+@keyframes subanimacion11{
+
+    0%{
+        width: 0%;
+    }
+
+    100%{
+        width: 80%;
+    }
+
+    }
+
+  .habili12 .progress-bar{
+	width: 0% ;
+	background: #d48207 !important;
+	animation:subanimacion12 2s;
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+
+@keyframes subanimacion12{
+
+    0%{
+        width: 0%;
+    }
+
+    100%{
+        width: 80%;
+    }
+
+    }
+
+  .idioma .progress-bar{
+	width: 0% ;
+	background: #d48207 !important;
+	animation:subanimacion13 2s;
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+
+@keyframes subanimacion13{
+
+    0%{
+        width: 0%;
+    }
+
+    100%{
+        width: 20%;
+    }
+
+    }
+
+
+.idioma{
+	margin-top: 30px;
+}
+
+
+
+.interes{
+	margin-top: 30px;
+}
+
+@media only screen and (max-width: 1300px){
+
+.cv{
+flex-wrap: wrap-reverse !important;
+}
+
+.fotoperfil{
+	width: 100%;
+}
+
+
+.cajacontenedoraCV{
+	margin: 5px;
+	width: 100%;
+}
+
+.Breve{
+	width: 100%;
+}
+
+.perfil{
+	width: 100%;
+}
+
+   }

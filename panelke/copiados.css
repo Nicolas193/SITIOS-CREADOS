@@ -1,0 +1,183 @@
+
+.menu__link--escri{														/*para los a prin*/
+ text-decoration: none; /*quita la linea de las palabras*/
+}	
+
+.menu__link_sub{
+	position: absolute;
+	list-style:none;				/* quitar puntidos a los titulos*/   /*Productos*/									
+	text-align: center;
+	border-radius: 2px;
+	box-shadow:0.5px 0.5px 0.5px 0.5px #2aad25;
+}
+
+.menu__link{															/*para los li*/
+	display: inline-block; /* Incinar el menu desplegable*/
+	padding: 15px; /*El área de padding es el espacio entre el contenido del elemento y su borde*/
+}
+
+.menu li ul {								/* esto es para menu desplegable */
+		display:none;
+		background-color: #ffff;
+}
+			
+.menu li:hover > ul {
+	display:block;										/* esto tambien */
+}
+
+.menu{													/*menu de la pagina web para pc*/
+	width: 100%; /*ancho de la IMAGEN*/
+	border-radius:0px 0px 20px 20px ;
+	box-shadow:1px 1px 1px 1px #2aad25;
+}
+
+.menu li i{
+width: 30px;
+box-sizing:  border-box;														/*para los iconos*/
+color: #2aad25;
+text-align: center;		/* alineacion del texto*/
+margin-right: 5px;
+}
+
+.menu li a{	
+	font-family: "ArIaL", serif;
+	font-weight: 500;																	/*todos los a*/
+	color: black;
+	font-size: 12px;
+	padding: 20px;
+}
+.menucaja_responsi{
+	display: none;   /* Oculta el display de los dispositivos android */
+}
+
+
+@media only screen and (max-width: 1300px){
+
+	.menudespl{
+		position: fixed;
+		z-index: 100;
+		background-color: #fff;
+	}
+	.menu{
+		display: none;
+	}
+	.menucaja_responsi{
+		display: block;
+		position: absolute;
+		width: 100%;
+		background-color:#ffff ;
+		text-decoration: none; 
+	}
+
+	.LOG{
+	position: relative;
+	left: 40%;																/*Logo de la pagina*/
+	width: 100px; /*ancho de la IMAGEN*/
+	margin: 5px 0px auto;  /*margen de la caja*/
+	border-radius: 10px;
+	box-shadow:0.5px 0.5px 0.5px 0.5px #2aad25;
+	padding: 10px;
+	
+
+}
+li:hover{
+	box-shadow:0.5px 0.5px 0.5px 1px #2aad25;
+}
+
+
+.menucaja_responsi li{
+
+	color: black;		/*color de las letras*/
+	font-size: 14px; /* tamaño de las letras*/
+	font-family:  "Sen", sans-serif;
+	text-decoration: none;
+}
+
+.menu-responsi li i{
+	box-sizing:  border-box;														/*para los iconos*/
+	color: #2aad25;
+	text-align: center;		/* alineacion del texto*/
+	margin-right: 5px;
+	padding: 20px;
+	background-color: #cfcfcf;
+	margin:10px;
+	order-radius: 10px;
+	box-shadow:1px 1px 2px 0.5px;
+	border-radius: 10px;
+ 
+}
+
+.menu__link--escri-a{
+	color: #2aad25;
+}
+
+
+.menu__link_sub-responsi li{
+	padding: 5px;
+	list-style:none;
+}
+
+a{
+	text-decoration: none;
+}
+
+.menu__link_sub-responsi{
+	position: absolute;
+	top: 310px ;
+	left: -100%;
+	visibility: hidden;
+	background-color: #ffff;
+	padding: 20px;
+	border-radius: 5px;
+	text-align: center;
+	box-shadow:1px 1px 2px 0.5px #2aad25;
+}
+
+
+
+
+
+#activadorseg:checked ~ .menu__link_sub-responsi {
+	position: absolute;
+	z-index: 20;								/*menu resposible click */
+	top: 280px;
+	left: 120px;
+	opacity: 80%;
+	visibility: visible;
+	transform: translatey(0%);							/* esto tambien */
+	
+}
+
+#activadorseg{
+display: none;
+}
+
+.menu-responsi{
+	z-index: 20;
+	background: rgba(255,255,255,0.5);
+	opacity: 0;
+	width: 100%;
+	visibility: hidden;
+	transition: .5s;
+	transform: translatex(-100%);			/*oculta el menu*/
+}
+
+#activador:checked ~ .menu-responsi
+{
+	z-index: 20;								/*menu resposible click */
+	opacity: 1;
+	visibility: visible;
+	transform: translateX(0%);
+}
+
+
+#activador{
+	display: none;
+}
+
+.boton_responsi{
+	font-size: 28px;
+	background-color:#2aad25;
+}
+
+}

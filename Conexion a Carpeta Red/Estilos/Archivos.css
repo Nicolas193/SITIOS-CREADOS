@@ -1,0 +1,94 @@
+.content {
+  flex: 1;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+  border-radius: 5px;
+}
+
+.folder {
+  background-color: #fff;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  font-weight: 400;
+}
+
+.folder:hover {
+  transform: translateY(-5px);
+  background-color: #f5f9fd;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+  margin: 0 0 10px;
+  font-size: 1.5rem;
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+h3 {
+  margin: 0 0 5px;
+  font-size: 1.25rem;
+  color: #34495e;
+  font-weight: 400;
+}
+
+p {
+  margin: 5px 0;
+  color: #495057;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+
+/* Animaciones */
+.folder {
+  transition: all 0.3s ease;
+}
+
+.folder:hover {
+  transform: translateY(-5px);
+}
+
+.content {
+  position: relative;
+  z-index: 1; /* Asegura que los divs del contenido estén por encima de la imagen de fondo */
+}
+
+.background-image-container {
+  position: relative;
+}
+
+.background-image {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  opacity: 0.3; /* Ajusta la opacidad según prefieras */
+}
+
+
+.folder a {
+  display: flex;
+  align-items: center; /* Centra verticalmente el contenido */
+  color: #000; /* Color de texto negro */
+  text-decoration: none; /* Quita subrayado de enlaces */
+  transition: color 0.3s ease; /* Transición de color suave */
+}
+
+.folder a:hover {
+  color: #555; /* Cambia el color del texto al pasar el mouse */
+}
+
+.file-icon {
+  font-size: 24px; /* Tamaño del icono */
+  margin-right: 10px; /* Espacio entre el icono y el texto */
+}
+
+.folder-text {
+  font-size: 18px; /* Tamaño del texto */
+}

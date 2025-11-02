@@ -1,0 +1,13 @@
+/* colors.css */
+:root {
+  --color-morado: #531f5d;
+  --color-amarillo: #ffcb00;
+  --color-verde-oscuro: #3d4137;
+  --color-gris-claro: #f3f2f4;
+}
+
+/* Ejemplo de uso:
+background-color: var(--color-morado);
+color: var(--color-amarillo);
+border: 1px solid var(--color-verde-oscuro);
+*/

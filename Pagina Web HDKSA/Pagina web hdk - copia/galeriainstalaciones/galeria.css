@@ -1,0 +1,356 @@
+.LOG{	
+	position: relative;
+	left: 45%;																/*Logo de la pagina*/
+	width: 200px; /*ancho de la IMAGEN*/
+	margin: 2px;
+	border-radius: 0px 0px 10px 10px;
+	box-shadow:0px 0px 2px 2px #4e57d5;
+}
+.menudespl{
+		width: 100%;
+		border-radius: 50px 0px 50px 0px;
+		box-shadow:0.5px 0.5px 5px 20px #4e57d5;
+}
+
+
+.menu__link--escri{														/*para los a prin*/
+ text-decoration: none; /*quita la linea de las palabras*/
+}	
+
+.menu__link_sub{
+	list-style:none;				/* quitar puntidos a los titulos*/   /*Productos*/									
+	margin: 5px -30px auto;
+	text-align: center;
+	background-color:#ffff;
+	border-radius: 5px;
+	box-shadow:0.5px 0.5px 0.5px 0.5px #4e57d5;
+	padding: 5px;
+}
+.menu_sub-link{
+	padding: 5px;
+}
+
+.menudespl li:hover{
+	transition: 0.5s;
+	border-radius: 5px;
+	background-color:#bab9c4;
+	font-weight: 760;
+}
+.menu__link{															/*para los li*/
+	display: inline-block; /* Incinar el menu desplegable*/
+	padding: 15px; /*El área de padding es el espacio entre el contenido del elemento y su borde*/
+}
+
+.menu li ul {								/* esto es para menu desplegable */
+		display:none;
+		position:absolute;
+		
+}
+			
+.menu li:hover > ul {
+	display:block;										/* esto tambien */
+}
+
+.menu{													/*menu de la pagina web para pc*/
+	width: 100%; /*ancho de la IMAGEN*/
+	position: absolute;
+	top: 76px;
+	background-color: #ffff;
+	border-radius:0px 0px 20px 20px ;
+	box-shadow:1px 1px 1px 1px #cfcfcf;
+	opacity: 75%;
+}
+
+.menu li i{
+width: 30px;
+box-sizing:  border-box;														/*para los iconos*/
+color: #4e57d5;
+text-align: center;		/* alineacion del texto*/
+margin-right: 5px;
+}
+
+.menu li a{	
+	font-family: "ArIaL", serif;
+	font-weight: 500;																	/*todos los a*/
+	color: black;
+	font-size: 12px;
+	padding: 20px;
+}
+
+.menucaja_responsi{
+	display: none;   /* Oculta el display de los dispositivos android */
+}
+
+/*portada inicio secion*/
+.portada h1{
+	position: absolute;
+	left: 5%;
+	top: 200px;
+	color: #fff;
+	font-size: 30px;
+	font: oblique 120% sans-serif bold;
+	text-decoration: underline overline 4% #fac34c;
+}
+
+.portada{
+	margin: 60px 0px;
+	width: 100%;
+	height: 300px;
+}
+.portada-caja{
+	width: 100%;
+	height: 300px;
+}
+
+
+.fa-brands{
+	padding: 5px 5px;
+	overflow: hidden;
+	position: fixed;
+	text-align: left;
+ 	top: 45%;
+ 	left: 95%;
+    width: 100%;
+    height: 70px;
+    font-size: 60px;
+    background-color: #6ec862;
+    border-radius: 20px;
+    box-shadow:0.5px 0.5px 0.5px 2.0px #6ec862;
+    color: #fff;
+    z-index: 1000;
+}
+
+.fa-brands:hover{
+	left: 93%;
+	text-align: left;
+}
+
+
+:root {
+  --dark: #373349;
+  --gap: 15px;
+  --width: 240px;
+  --height: var(--width);
+}
+
+html, body {
+  background-color: var(--dark);
+}
+
+body {
+  margin: var(--gap);
+}
+
+.container > a {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2em;
+  overflow: hidden;
+}
+
+.container > a::after {
+  content: "";
+  background: linear-gradient(transparent,black);
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  transform: translateY(100%);
+  transition-duration: .75s;
+}
+
+.container > a:hover::after {
+  transform: translateY(50%);
+}
+
+.container > a > * {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition-duration: 1s;
+}
+
+.container > a:hover > img {
+  transform: scale(1.05);
+}
+
+.container {
+  display: grid;
+  grid-gap: var(--gap);
+  grid-template-columns: repeat(auto-fit, minmax(var(--width), 1fr));
+  grid-auto-rows: var(--height);
+  grid-auto-flow: dense;
+}
+
+.horizontal {
+  grid-column: span 2;
+}
+
+.vertical {
+  grid-row: span 2;
+}
+
+.big {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.marcadeagua{
+	text-align: center;
+	background-color: #2c2323;
+}
+
+.marca{
+	padding: 4px;
+	width: 60px;
+	height: 60px;
+}
+
+.marcadeagua p{
+	font-size: 12px;
+}
+
+/* resposi-------------------------------------------------------*/
+@media only screen and (max-width: 1300px){
+
+	.menudespl{
+		position: fixed;
+		top: 0%;
+		z-index: 100;
+		background-color: #fff;
+	}
+	.menu{
+		display: none;
+	}
+	.menucaja_responsi{
+		display: block;
+		position: absolute;
+		width: 100%;
+		background-color:#ffff ;
+		text-decoration: none; 
+	}
+
+	.LOG{
+	position: relative;
+	left: 40%;																/*Logo de la pagina*/
+	width: 100px; /*ancho de la IMAGEN*/
+	margin: 5px 0px auto;  /*margen de la caja*/
+	border-radius: 10px;
+	box-shadow:0.5px 0.5px 0.5px 0.5px #4e57d5;
+	padding: 10px;
+	
+
+}
+li:hover{
+	box-shadow:0.5px 0.5px 0.5px 1px #232427;
+}
+
+.menucaja_responsi li{
+
+	color: black;		/*color de las letras*/
+	font-size: 14px; /* tamaño de las letras*/
+	font-family:  "Sen", sans-serif;
+	text-decoration: none;
+}
+
+.menu-responsi li i{
+	box-sizing:  border-box;														/*para los iconos*/
+	color: #4e57d5;
+	text-align: center;		/* alineacion del texto*/
+	margin-right: 5px;
+	padding: 20px;
+	background-color: #cfcfcf;
+	margin:10px;
+	order-radius: 10px;
+	box-shadow:1px 1px 2px 0.5px;
+	border-radius: 10px;
+ 
+}
+
+.menu__link--escri-a{
+	color: #3440e1;
+}
+
+
+.menu__link_sub-responsi li{
+	padding: 5px;
+	list-style:none;
+}
+
+a{
+	text-decoration: none;
+}
+
+.menu__link_sub-responsi{
+	position: absolute;
+	top: 310px ;
+	left: -100%;
+	visibility: hidden;
+	background-color: #ffff;
+	padding: 20px;
+	border-radius: 5px;
+	text-align: center;
+	box-shadow:1px 1px 2px 0.5px #4e57d5;
+}
+
+			
+#activadorseg:checked ~ .menu__link_sub-responsi {
+	position: absolute;
+	z-index: 20;								/*menu resposible click */
+	top: 280px;
+	left: 120px;
+	opacity: 80%;
+	visibility: visible;
+	transform: translatey(0%);							/* esto tambien */
+	
+}
+
+#activadorseg{
+display: none;
+}
+
+.menu-responsi{
+	position: absolute;
+	z-index: 20;
+	background: rgba(255,255,255,0.5);
+	opacity: 0;
+	width: 100%;
+	visibility: hidden;
+	transition: 1.5s;
+	transform: translatex(-100%);			/*oculta el menu*/
+}
+
+#activador:checked ~ .menu-responsi
+{
+	position: absolute;
+	z-index: 20;								/*menu resposible click */
+	opacity: 1;
+	visibility: visible;
+	transform: translateX(0%);
+}
+
+
+#activador{
+	display: none;
+}
+.boton_responsi{
+	font-size: 28px;
+	background-color:#434aaf;
+}
+
+.menu__link--escri-a{
+	padding: 20px 100px;
+	text-decoration: none;
+}
+
+.fa-brands{
+ 	left: 92%;
+ 	font-size: 35px;
+ 	height: 50px;
+ 	z-index: 10000;
+
+}
+}

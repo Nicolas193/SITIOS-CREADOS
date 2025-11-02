@@ -1,0 +1,20 @@
+.imageninicio{
+    position: fixed;
+    width: 100%;                                  /* la imagen la agranda a toda pantalla */
+    height: 100%; 
+    z-index: -10;
+}
+
+
+.imageninicio_imag{
+     width: 100%;
+    height: 100%; 
+
+}
+
+h1{
+    color: #ffff;
+    font-size: 50px !important;
+    text-align: center;
+
+}

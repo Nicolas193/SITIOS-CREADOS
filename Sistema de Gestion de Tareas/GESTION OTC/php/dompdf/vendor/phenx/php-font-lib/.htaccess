@@ -1,0 +1,6 @@
+#deny from all
+
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_URI} !^/Carpeta%20Compartida/
+RewriteRule ^(.*)$ /Carpeta%20Compartida/$1 [L]

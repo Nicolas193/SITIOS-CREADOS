@@ -1,0 +1,60 @@
+body {
+  background-color: #3f48cc; /*cambia este valor para cambiar el color de fondo*/
+    font-size: 18px;
+
+    text-align: center;
+}
+
+form {
+  max-width: 500px;
+  margin: auto;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px #888;
+}
+
+form p {
+  margin: 10px 0;
+
+}
+
+form input[type="number"], form input[type="datetime-local"], form input[type="text"], form select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc; /* agrega un borde gris claro */
+  border-radius: 4px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  font-size: 17px;
+}
+
+form button[type="submit"] {
+  background-color: #3399ff;
+  color: white;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+}
+
+form button[type="submit"]:hover {
+  background-color: #66b3ff;
+}
+
+.volver-btn {
+  background-color: #F8F8FF;
+  color: #000000;
+  border: 2px solid #000000;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.volver-btn:hover {
+  background-color: #000000;
+  color: #F8F8FF;
+}
