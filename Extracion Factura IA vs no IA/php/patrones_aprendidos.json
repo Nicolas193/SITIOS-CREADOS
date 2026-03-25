@@ -1,0 +1,79 @@
+{
+    "Banco Ciudad": {
+        "banco": "Banco Ciudad",
+        "banco_detector": "Banco Ciudad",
+        "formato_fecha": "dd-MMM-yyyy",
+        "separador": "tab",
+        "montos_con_signo": false,
+        "prefijo_monto": "",
+        "sufijo_d_fecha": false,
+        "ruido": [
+            "FECHA\tCONCEPTO\tDÉBITO\tCRÉDITO\t",
+            "I.M.P.S. S\/Nro.",
+            "I. BRUTOS (C.M.)"
+        ],
+        "header_keywords": [
+            "FECHA",
+            "CONCEPTO",
+            "DÉBITO",
+            "CRÉDITO",
+            "SALDO",
+            "DESCRIPCIÓN DE MOVIMIENTO"
+        ],
+        "muestras": [
+            "02-FEB-2026 CAPITALIZACION AH\t3,65\t1432.358,25",
+            "02-FEB-2026 TRANSFERENCIA\t50.000,00\t1382.358,25 20145315558 MACIEL",
+            "02-FEB-2026 Tarjeta Masterc-53\t12.340,00\t1370.018,25",
+            "02-FEB-2026 Tarjeta Masterc-53\t13.200,00\t1356.818,25",
+            "02-FEB-2026 AUTOSERVICIO DEL -\t8.800,00\t1348.018,25"
+        ],
+        "movimientos_ia": 0,
+        "aprendido_en": "2026-03-22 15:58:44",
+        "aprendido_via": "generador_regex",
+        "veces_usado": 0,
+        "ia_patrones": {
+            "regex_linea_movimiento": "^\\d{2}-[A-Z]{3}-\\d{4}\\s",
+            "regex_captura_fecha": "^(\\d{2}-[A-Z]{3}-\\d{4})\\s",
+            "formato_fecha": "dd-MMM-yyyy",
+            "estructura_montos": "columnas_tab",
+            "montos_con_signo": false,
+            "tiene_sufijo_D": false,
+            "col_tab": {
+                "fecha": 0,
+                "descripcion": 0,
+                "debito": 1,
+                "credito": 2,
+                "saldo": 3
+            },
+            "regex_captura_debito": null,
+            "regex_captura_credito": null,
+            "regex_captura_monto_op": null,
+            "regex_captura_saldo": null,
+            "patrones_skip_linea": [
+                "CUIT: 30-99903208-3",
+                "BUENOS AIRES\tTIPO",
+                "SUCURSAL N°\t12 OBE",
+                "FECHA\tCONCEPTO\tD",
+                "I.M.P.S. S\/Nro.",
+                "Nro.901-912205-7",
+                "I. BRUTOS (C.M.)",
+                "IVA RESPOSABLE INS"
+            ],
+            "patrones_inicio_tabla": [],
+            "patrones_fin_tabla": [],
+            "descripcion": "Extracto bancario del Banco Ciudad con formato de fecha dd-MMM-yyyy y estructura de columnas separadas por tabulaciones.",
+            "self_test_hits": 15,
+            "lineas_ejemplo": [
+                "02-FEB-2026 CAPITALIZACION AH\t3,65\t1432.358,25",
+                "02-FEB-2026 TRANSFERENCIA\t50.000,00\t1382.358,25 20145315558 MACIEL",
+                "02-FEB-2026 Tarjeta Masterc-53\t12.340,00\t1370.018,25",
+                "02-FEB-2026 Tarjeta Masterc-53\t13.200,00\t1356.818,25",
+                "02-FEB-2026 AUTOSERVICIO DEL -\t8.800,00\t1348.018,25"
+            ],
+            "separador_php": "tab"
+        },
+        "ia_patrones_generados": true,
+        "ia_patrones_usos": 2,
+        "ia_patrones_ultimo_uso": "2026-03-22 15:58:52"
+    }
+}

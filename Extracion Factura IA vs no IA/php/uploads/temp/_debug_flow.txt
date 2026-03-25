@@ -1,0 +1,18 @@
+=== REQUEST 2026-03-22 15:58:52 ===
+POST keys: texto_extraido, nombre_archivo
+FILES keys: 
+texto_extraido length: 7746
+modo: default
+
+=== PROCESARTEXTO DEBUG ===
+Archivo: Resumen de cuenta 00040120005920535711March.pdf
+Banco: Banco Ciudad
+Chars original: 7746 | Chars limpio: 3281
+Patrones file: C:\xampp\htdocs\Extracion Factura IA vs no IA\php/patrones_aprendidos.json
+Patrones exists: SÍ
+Patrones bancos: Banco Ciudad
+
+PASO 1 (etiquetas): null
+PASO 2 (sin etiquetas): null
+PASO 2.3 (regex IA): 38 movs
+RESULTADO: PASO 2.3 → 38 movimientos

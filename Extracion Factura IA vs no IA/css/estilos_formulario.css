@@ -1,0 +1,265 @@
+:root {
+    --primary: #2563EB;
+    --primary-dark: #1e40af;
+    --bg-body: #F3F4F6;
+    --bg-card: #ffffff;
+    --text-main: #1F2937;
+    --text-light: #6B7280;
+    --border: #E5E7EB;
+    --radius: 16px;
+    --header-height: 70px; /* Sincronizado con tu menú */
+    --fab-size: 56px;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    margin: 0;
+    padding-top: var(--header-height);
+    padding-bottom: 80px; /* Espacio extra abajo para el móvil */
+}
+
+/* --- CONTENEDOR PRINCIPAL --- */
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+/* --- VISOR DE IMAGEN (Columna Izquierda / Modal en Móvil) --- */
+.image-viewer {
+    flex: 1;
+    background: #27272a;
+    border-radius: var(--radius);
+    padding: 10px;
+    height: calc(100vh - 120px);
+    position: sticky;
+    top: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.image-viewer canvas, 
+.image-viewer img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 4px;
+}
+
+.empty-state {
+    color: #a1a1aa;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+/* --- FORMULARIO (Columna Derecha) --- */
+.form-container {
+    flex: 1;
+    max-width: 600px;
+}
+
+.card {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 25px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+    border: 1px solid var(--border);
+}
+
+/* Títulos de Sección */
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--bg-body);
+}
+
+.section-number {
+    background: var(--primary);
+    color: white;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.section-title {
+    font-weight: 700;
+    color: var(--text-main);
+    font-size: 1.1rem;
+}
+
+/* Inputs grandes para dedos */
+.input-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--text-light);
+}
+
+input, select {
+    width: 100%;
+    padding: 14px; /* Área de toque grande */
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 16px; /* Evita zoom en iPhone */
+    background: #fff;
+    transition: all 0.2s;
+    box-sizing: border-box;
+    -webkit-appearance: none; /* Estilo nativo iOS */
+}
+
+input:focus, select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    outline: none;
+}
+
+/* Input Total Destacado */
+.input-total {
+    background-color: #EFF6FF;
+    border-color: #BFDBFE;
+    color: var(--primary-dark);
+    font-weight: 800;
+    font-size: 1.2rem;
+    text-align: right;
+}
+
+/* --- BOTONES --- */
+.btn-upload {
+    background: #F9FAFB;
+    border: 2px dashed #D1D5DB;
+    padding: 40px 20px;
+    text-align: center;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-upload:active {
+    background: #e5e7eb;
+    border-color: var(--primary);
+}
+
+.btn-main {
+    background: var(--primary);
+    color: white;
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+}
+
+/* --- BOTÓN FLOTANTE (SOLO MÓVIL) --- */
+.fab-preview {
+    display: none; /* Oculto en PC */
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--text-main);
+    color: white;
+    width: var(--fab-size);
+    height: var(--fab-size);
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    z-index: 100;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+.fab-label {
+    position: absolute;
+    right: 70px;
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+
+/* --- MODAL PARA MÓVIL --- */
+.mobile-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    z-index: 2000;
+    flex-direction: column;
+}
+
+.modal-header {
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.modal-body {
+    flex: 1;
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 900px) {
+    .main-container {
+        display: block; /* Pila vertical */
+        padding: 10px;
+    }
+    
+    /* En móvil, ocultamos el visor de columna izquierda */
+    .image-viewer {
+        display: none; 
+    }
+
+    .form-container {
+        max-width: 100%;
+    }
+
+    /* Mostramos el botón flotante si hay imagen cargada */
+    .fab-preview.visible {
+        display: flex;
+    }
+    
+    .card {
+        padding: 20px 15px; /* Menos padding lateral */
+    }
+}

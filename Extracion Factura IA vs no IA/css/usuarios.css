@@ -1,0 +1,254 @@
+/* css/usuarios.css */
+
+/* --- CONFIGURACIÓN BASE --- */
+body {
+    background-color: #f3f4f6;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    /* Ajuste para evitar rebote en iOS */
+    -webkit-text-size-adjust: 100%;
+}
+
+.main-container {
+    max-width: 1200px;
+    margin: 90px auto 40px auto; /* Más espacio arriba para el menú fijo */
+    padding: 0 15px; /* Padding lateral seguro */
+}
+
+/* Encabezado */
+.header-section h2 {
+    color: #1f2937;
+    margin-bottom: 5px;
+    font-size: 1.5rem;
+}
+
+.header-section p {
+    color: #6b7280;
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+}
+
+/* --- LAYOUT PRINCIPAL (Desktop por defecto) --- */
+.grid-usuarios {
+    display: grid;
+    grid-template-columns: 350px 1fr; /* Formulario fijo, Tabla flexible */
+    gap: 25px;
+    align-items: start;
+}
+
+/* Tarjetas contenedoras */
+.card {
+    background: #ffffff;
+    border-radius: 16px; /* Bordes más redondeados estilo app */
+    padding: 20px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    border: 1px solid #f3f4f6;
+}
+
+.card h3 {
+    margin-top: 0;
+    color: #111827;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+/* --- FORMULARIOS (Touch Friendly) --- */
+.input-group {
+    margin-bottom: 18px; /* Más espacio entre inputs */
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: #4b5563;
+    margin-bottom: 6px;
+}
+
+/* Inputs más altos para dedos */
+.input-group input, .input-group select {
+    padding: 12px; 
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 1rem; /* 16px evita zoom automático en iPhone */
+    background-color: #fff;
+    width: 100%;
+    box-sizing: border-box; /* Asegura que el padding no rompa el ancho */
+}
+
+.input-group input:focus, .input-group select:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.form-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+/* Botones Grandes */
+.btn-main, .btn-cancel {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.1s, background-color 0.2s;
+}
+
+.btn-main {
+    background-color: #2563eb;
+    color: white;
+}
+.btn-main:active { transform: scale(0.98); background-color: #1e40af; }
+
+.btn-cancel {
+    background-color: #ffffff;
+    color: #374151;
+    border: 1px solid #d1d5db;
+}
+.btn-cancel:active { background-color: #f3f4f6; }
+
+.hidden { display: none !important; }
+
+/* --- TABLA (Estilo Desktop) --- */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto; /* Fallback para pantallas intermedias */
+}
+
+.table-usuarios {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-usuarios th {
+    background-color: #f8fafc;
+    color: #64748b;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.table-usuarios td {
+    padding: 14px 15px;
+    border-bottom: 1px solid #f1f5f9;
+    vertical-align: middle;
+}
+
+/* Badges */
+.badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+.badge-admin { background-color: #fee2e2; color: #991b1b; }
+.badge-user { background-color: #e0e7ff; color: #3730a3; }
+
+/* Botones de acción */
+.action-buttons { display: flex; gap: 8px; }
+.btn-icon {
+    background: transparent;
+    border: 1px solid transparent;
+    padding: 6px;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+.btn-icon.edit { color: #2563eb; background-color: #eff6ff; }
+.btn-icon.delete { color: #dc2626; background-color: #fef2f2; }
+
+/* Alertas */
+.alert {
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+}
+.alert-success { background-color: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
+.alert-error { background-color: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+
+
+/* --- MODO RESPONSIVE (MÓVIL) --- */
+@media (max-width: 900px) {
+    /* 1. Cambiar Layout a una sola columna */
+    .grid-usuarios {
+        grid-template-columns: 1fr;
+    }
+
+    /* 2. Transformar la Tabla en TARJETAS (Card View) */
+    /* Ocultamos los encabezados de la tabla */
+    .table-usuarios thead {
+        display: none;
+    }
+
+    .table-usuarios, .table-usuarios tbody, .table-usuarios tr, .table-usuarios td {
+        display: block;
+        width: 100%;
+    }
+
+    /* Estilo de cada "fila" como tarjeta */
+    .table-usuarios tr {
+        margin-bottom: 15px;
+        background-color: #fff;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        padding: 10px;
+    }
+
+    /* Estilo de las celdas dentro de la tarjeta */
+    .table-usuarios td {
+        padding: 10px;
+        text-align: right; /* Contenido a la derecha */
+        border-bottom: 1px solid #f3f4f6;
+        position: relative;
+        padding-left: 45%; /* Espacio para la etiqueta */
+        min-height: 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .table-usuarios td:last-child {
+        border-bottom: none;
+        justify-content: flex-end; /* Botones a la derecha */
+        padding-left: 10px;
+    }
+
+    /* Etiquetas automáticas usando CSS (Pseudo-elementos) */
+    /* Se alinean con el orden de tus columnas PHP */
+    .table-usuarios td:nth-of-type(1)::before { content: "Usuario"; position: absolute; left: 10px; font-weight: 700; color: #6b7280; }
+    .table-usuarios td:nth-of-type(2)::before { content: "Nombre/DNI"; position: absolute; left: 10px; font-weight: 700; color: #6b7280; }
+    .table-usuarios td:nth-of-type(3)::before { content: "Contacto"; position: absolute; left: 10px; font-weight: 700; color: #6b7280; }
+    .table-usuarios td:nth-of-type(4)::before { content: "Rol"; position: absolute; left: 10px; font-weight: 700; color: #6b7280; }
+    .table-usuarios td:nth-of-type(5)::before { content: "Último Acceso"; position: absolute; left: 10px; font-weight: 700; color: #6b7280; }
+    
+    /* Ajustes visuales para el contenido de las celdas en móvil */
+    .table-usuarios td:nth-of-type(1) { font-size: 1.1rem; color: #2563eb; } /* Usuario destacado */
+    
+    /* Botones de acción más grandes en móvil */
+    .btn-icon {
+        padding: 10px;
+        font-size: 1.2rem;
+    }
+}
